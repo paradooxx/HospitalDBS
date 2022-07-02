@@ -5,3 +5,5 @@
 *.user
 *.tlog
 *.cache
+*.log
+*.metagen

@@ -7,6 +7,6 @@ using namespace System::Windows::Forms;
 void Main(array<String^>^ args) {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
-	HospitalDB::HospitalDB MainForm;
+	HospitalDB::MainForm MainForm;
 	Application::Run(% MainForm);
 }
