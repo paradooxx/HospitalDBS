@@ -1,6 +1,11 @@
 #pragma once
 
+#include "SqlQueries.h"
+
+//Connect connect;
 namespace HospitalDB {
+
+	//Connect^ connect = gcnew Connect();
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -15,19 +20,16 @@ namespace HospitalDB {
 	/// </summary>
 	public ref class MainForm : public System::Windows::Forms::Form
 	{
-		MySqlConnection^ sqlconn = gcnew MySqlConnection();
-		MySqlCommand^ sqlcmd = gcnew MySqlCommand();
-		DataTable^ sqldt = gcnew DataTable();
-		MySqlDataAdapter^ sqldta = gcnew MySqlDataAdapter();
-		MySqlDataReader^ sqlrd;
-
+		Connect connect;
 	public:
 		MainForm(void)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
-			hospitaldb();
+			connect.ConnectDB();
+			connect.CreateTable();
+			connect.CloseDB();
 			//
 		}
 
@@ -86,24 +88,18 @@ namespace HospitalDB {
 			this->ResumeLayout(false);
 
 		}
-
-	private: System::Void hospitaldb()
+	
+	//will delete this but in the future
+	/*private: System::Void ConnectDB()
 	{
 		try {
 			sqlconn->ConnectionString = "datasource = localhost;"
 				"port = 3306; "
 				"username = root;"
-				"password = 7240paio6921;"
+				"password = ;"
 				"database = hospitaldb";
 			sqlconn->Open();
 			sqlcmd->Connection = sqlconn;
-			sqlcmd->CommandText = "select * from hospitaldb";
-			sqlcmd->CommandText = "CREATE TABLE if not exists Random (Id INT(10), name VARCHAR(50));";
-			sqlcmd->CommandText = "drop table random;";
-			sqlrd = sqlcmd->ExecuteReader();
-			sqldt->Load(sqlrd);
-			sqlrd->Close();
-			sqlconn->Close();
 		}
 		catch (Exception^ ex)
 		{
@@ -111,6 +107,36 @@ namespace HospitalDB {
 		}
 	}
 
+	private: System::Void CreateTable()
+	{
+		try {
+			//sqlcmd->Connection = sqlconn;
+			//sqlcmd->CommandText = "select * from hospitaldb";
+			sqlcmd->CommandText = "CREATE TABLE if not exists Random (Id INT(10), name VARCHAR(50));";
+			sqlcmd->CommandText = "CREATE TABLE if not exists Random2 (Id INT(10), name VARCHAR(50));";
+			//sqlcmd->CommandText = "drop table random;";
+			sqlrd = sqlcmd->ExecuteReader();
+			//sqldt->Load(sqlrd);
+			sqlrd->Close();
+			//sqlconn->Close();
+		}
+		catch (Exception^ ex)
+		{
+			MessageBox::Show(ex->Message, "Connection Error", MessageBoxButtons::YesNo, MessageBoxIcon::Information);
+		}
+	}
+
+	private: System::Void CloseDB()
+	{
+		try
+		{
+			sqlconn->Close();
+		}
+		catch (Exception^ ex)
+		{
+			MessageBox::Show(ex->Message, "Connection Error", MessageBoxButtons::YesNo, MessageBoxIcon::Information);
+		}
+	}*/
 #pragma endregion
 	};
 }

@@ -9,4 +9,5 @@ void Main(array<String^>^ args) {
 	Application::SetCompatibleTextRenderingDefault(false);
 	HospitalDB::MainForm MainForm;
 	Application::Run(% MainForm);
+
 }
