@@ -13,18 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{8859bc1e-7264-4f08-9484-1a22c1b1cc99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sql">
+      <UniqueIdentifier>{21a7e734-0001-4d27-8c8e-2d3f677acac0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainForm.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainForm.h">
-      <Filter>Header Files</Filter>
+      <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="SqlQueries.h">
-      <Filter>Source Files</Filter>
+      <Filter>src\sql</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
