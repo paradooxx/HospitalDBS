@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{6307B76F-44E8-465B-83FE-AD0A6E2DEBCE}</ProjectGuid>
+    <ProjectGuid>{2E7CAA42-70F9-4CFA-9D54-3BAF83CC7400}</ProjectGuid>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>HospitalDB</RootNamespace>

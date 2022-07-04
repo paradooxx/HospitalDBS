@@ -1,6 +1,6 @@
-D:\Projects\HospitalDB\HospitalDB\Debug\HospitalDB.vcxproj.AssemblyReference.cache
-D:\Projects\HospitalDB\HospitalDB\Debug\HospitalDB.MainForm.resources
-D:\Projects\HospitalDB\HospitalDB\Debug\HospitalDB.vcxproj.GenerateResource.cache
-D:\Projects\HospitalDB\Debug\HospitalDB.exe.config
-D:\Projects\HospitalDB\HospitalDB\Debug\HospitalDB.exe.config
-D:\Projects\HospitalDB\HospitalDB\Debug\HospitalDB.vcxproj.CopyComplete
+D:\Programming\HospitalDB\Debug\HospitalDB.exe.config
+D:\Programming\HospitalDB\HospitalDB\Debug\HospitalDB.vcxproj.AssemblyReference.cache
+D:\Programming\HospitalDB\HospitalDB\Debug\HospitalDB.exe.config
+D:\Programming\HospitalDB\HospitalDB\Debug\HospitalDB.vcxproj.CopyComplete
+D:\Programming\HospitalDB\HospitalDB\Debug\HospitalDB.MainForm.resources
+D:\Programming\HospitalDB\HospitalDB\Debug\HospitalDB.vcxproj.GenerateResource.cache
