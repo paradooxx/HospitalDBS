@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SqlQueries.h"
+#include "Sql/SqlQueries.h"
 
 //Connect connect;
 namespace HospitalDB {

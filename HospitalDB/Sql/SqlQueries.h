@@ -35,7 +35,7 @@ public: System::Void CreateTable()
 		sqlcmd->CommandText = "CREATE TABLE if not exists Random (Id INT(10), name VARCHAR(50));";
 		sqlrd = sqlcmd->ExecuteReader();
 		sqlrd->Close();
-		sqlcmd->CommandText = "CREATE TABLE if not exists Random3 (Id INT(10), name VARCHAR(50));";
+		sqlcmd->CommandText = "CREATE TABLE if not exists Random2 (Id INT(10), name VARCHAR(50));";
 		sqlrd = sqlcmd->ExecuteReader();
 		//sqldt->Load(sqlrd);      //to read table columns
 		sqlrd->Close();
