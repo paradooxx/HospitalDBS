@@ -29,6 +29,11 @@ public: System::Void ConnectDB()
 	}
 }
 
+public: System::Void LoginAuthenticate()
+{
+
+}
+
 public: System::Void LoginDB()
 {
 	try {

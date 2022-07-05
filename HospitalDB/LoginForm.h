@@ -216,8 +216,10 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 			}
 			else if(count > 1)
 				MessageBox::Show("Login details duplicate!", "HospitalDB", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			else if(username->Length == 0 || password->Length == 0)
+				MessageBox::Show("Username or password empty!", "HospitalDB", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			else
-				MessageBox::Show("Login Failed!", "HospitalDB", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				MessageBox::Show("Login Failed!\nTry Again", "HospitalDB", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		}
 		catch (Exception^ ex)
 		{

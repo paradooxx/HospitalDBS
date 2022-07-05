@@ -229,6 +229,7 @@ Class Login: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
     ConnectDB(): PrivateScope, Public, HideBySig
+    LoginAuthenticate(): PrivateScope, Public, HideBySig
     LoginDB(): PrivateScope, Public, HideBySig
     GetData(): PrivateScope, Public, HideBySig
 Class User: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
