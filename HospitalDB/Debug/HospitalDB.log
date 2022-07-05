@@ -1,3 +1,5 @@
-﻿  MainForm.cpp
-  MainForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  HospitalDB.vcxproj -> D:\Programming\HospitalDB\Debug\HospitalDB.exe
+﻿  LoginForm.cpp
+  MainForm.cpp
+  Generating Code...
+  LoginForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  HospitalDB.vcxproj -> D:\Projects\HospitalDB\Debug\HospitalDB.exe

@@ -2,10 +2,10 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\Programming\HospitalDB\Debug\HospitalDB.exe</FullPath>
+      <FullPath>D:\Projects\HospitalDB\Debug\HospitalDB.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>D:\Programming\HospitalDB\HospitalDB\Debug\HospitalDB.exe.config</FullPath>
+      <FullPath>D:\Projects\HospitalDB\HospitalDB\Debug\HospitalDB.exe.config</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

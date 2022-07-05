@@ -27,9 +27,9 @@ namespace HospitalDB {
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
-			connect.ConnectDB();
-			connect.CreateTable();
-			connect.CloseDB();
+			//connect.ConnectDB();
+			//connect.CreateTable();
+			//connect.CloseDB();
 			//
 		}
 
