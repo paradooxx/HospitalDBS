@@ -86,7 +86,7 @@ namespace HospitalDB {
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
 			this->pictureBox1->Location = System::Drawing::Point(240, 22);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(265, 61);
+			this->pictureBox1->Size = System::Drawing::Size(271, 65);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -97,7 +97,7 @@ namespace HospitalDB {
 			this->username->Location = System::Drawing::Point(240, 158);
 			this->username->Name = L"username";
 			this->username->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->username->Size = System::Drawing::Size(265, 35);
+			this->username->Size = System::Drawing::Size(271, 35);
 			this->username->TabIndex = 1;
 			// 
 			// password
@@ -108,7 +108,7 @@ namespace HospitalDB {
 			this->password->Name = L"password";
 			this->password->PasswordChar = '*';
 			this->password->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->password->Size = System::Drawing::Size(265, 35);
+			this->password->Size = System::Drawing::Size(271, 35);
 			this->password->TabIndex = 2;
 			// 
 			// label1
@@ -149,7 +149,7 @@ namespace HospitalDB {
 			// 
 			this->button2->Font = (gcnew System::Drawing::Font(L"Arial", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button2->Location = System::Drawing::Point(386, 304);
+			this->button2->Location = System::Drawing::Point(392, 304);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(119, 36);
 			this->button2->TabIndex = 6;

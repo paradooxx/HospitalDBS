@@ -70,7 +70,7 @@ namespace HospitalDB {
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
 			this->pictureBox1->Location = System::Drawing::Point(500, 2);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(267, 67);
+			this->pictureBox1->Size = System::Drawing::Size(272, 67);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -86,6 +86,7 @@ namespace HospitalDB {
 			this->Text = L"HospitalDB";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
+
 		}
 
 #pragma endregion
