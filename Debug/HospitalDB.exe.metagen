@@ -227,6 +227,8 @@ Assembly System.Xml.XPath.XDocument, Version=4.1.0.0, Culture=neutral, PublicKey
 	hash=None, flags=None
 Class Login: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    MySql.Data.MySqlClient.MySqlConnection sqlConn : Public
   Methods:
     ConnectDB(): PrivateScope, Public, HideBySig
     LoginAuthenticate(): PrivateScope, Public, HideBySig

@@ -12,6 +12,13 @@ public ref class Login
 	MySqlDataAdapter^ sqldta = gcnew MySqlDataAdapter();
 	MySqlDataReader^ sqlrd;
 
+public:
+	MySqlConnection^ sqlConn = gcnew MySqlConnection("datasource = localhost;"
+		"port = 3306;"
+		"username = root;"
+		"password = 7240paio6921;"
+		"database = hospitaldb");
+
 public: System::Void ConnectDB()
 {
 	try {

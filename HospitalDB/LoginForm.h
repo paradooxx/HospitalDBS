@@ -177,7 +177,6 @@ namespace HospitalDB {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
-
 		}
 #pragma endregion
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -188,17 +187,11 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		String^ username = this->username->Text;
 		String^ password = this->password->Text;
 
-
-		MySqlConnection^ sqlConn = gcnew MySqlConnection("datasource = localhost;"
-			"port = 3306; "
-			"username = root;"
-			"password = 7240paio6921;"
-			"database = hospitaldb");
-		MySqlCommand^ command = gcnew MySqlCommand("select * from login where username = @username and password = @password;", sqlConn);
+		MySqlCommand^ command = gcnew MySqlCommand("select * from login where username = @username and password = @password;", login.sqlConn);
 		MySqlDataReader^ reader;
 		try
 		{
-			sqlConn->Open();
+			login.sqlConn->Open();
 			command->Parameters->AddWithValue("@username", username);
 			command->Parameters->AddWithValue("@password", password);
 			reader = command->ExecuteReader();
