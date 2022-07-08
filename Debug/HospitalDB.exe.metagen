@@ -231,7 +231,6 @@ Class Login: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     MySql.Data.MySqlClient.MySqlConnection sqlConn : Public
   Methods:
     ConnectDB(): PrivateScope, Public, HideBySig
-    LoginAuthenticate(): PrivateScope, Public, HideBySig
     LoginDB(): PrivateScope, Public, HideBySig
     GetData(): PrivateScope, Public, HideBySig
 Class User: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit

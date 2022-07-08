@@ -174,9 +174,11 @@ namespace HospitalDB {
 			this->MaximizeBox = false;
 			this->Name = L"LoginForm";
 			this->Text = L"DataBase Login";
+			this->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &LoginForm::LoginEnter);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
+
 		}
 #pragma endregion
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -218,6 +220,52 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		{
 			MessageBox::Show(ex->Message, "Connection Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		}
+}
+private: System::Void LoginEnter(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+	try
+	{
+		if (e->KeyChar == (char)13)
+		{
+			String^ username = this->username->Text;
+			String^ password = this->password->Text;
+
+			MySqlCommand^ command = gcnew MySqlCommand("select * from login where username = @username and password = @password;", login.sqlConn);
+			MySqlDataReader^ reader;
+			try
+			{
+				login.sqlConn->Open();
+				command->Parameters->AddWithValue("@username", username);
+				command->Parameters->AddWithValue("@password", password);
+				reader = command->ExecuteReader();
+				int count = 0;
+				while (reader->Read())
+				{
+					count++;
+				}
+				if (count == 1)
+				{
+					MessageBox::Show("Login Succesful: " + username, "HospitalDB", MessageBoxButtons::OK, MessageBoxIcon::Information);
+					this->Hide();
+					HospitalDB::MainForm MainForm;
+					MainForm.ShowDialog();
+				}
+				else if (count > 1)
+					MessageBox::Show("Login details duplicate!", "HospitalDB", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				else if (username->Length == 0 || password->Length == 0)
+					MessageBox::Show("Username or password empty!", "HospitalDB", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				else
+					MessageBox::Show("Login Failed!\nTry Again", "HospitalDB", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			}
+			catch (Exception^ ex)
+			{
+				MessageBox::Show(ex->Message, "Connection Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			}
+		}
+	}
+	catch (Exception^ ex)
+	{
+		MessageBox::Show(ex->Message, "Error!", MessageBoxButtons::OK, MessageBoxIcon::Information);
+	}
 }
 };
 }

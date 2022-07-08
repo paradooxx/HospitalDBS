@@ -45,6 +45,16 @@ namespace HospitalDB {
 			}
 		}
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ button4;
+	private: System::Windows::Forms::Button^ button5;
+	private: System::Windows::Forms::PictureBox^ pictureBox2;
+
+
+
+
 	protected:
 
 	private:
@@ -62,33 +72,129 @@ namespace HospitalDB {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->button5 = (gcnew System::Windows::Forms::Button());
+			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(500, 8);
+			this->pictureBox1->Location = System::Drawing::Point(504, 43);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(272, 67);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Click += gcnew System::EventHandler(this, &MainForm::pictureBox1_Click);
+			// 
+			// button1
+			// 
+			this->button1->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->Location = System::Drawing::Point(504, 169);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(272, 55);
+			this->button1->TabIndex = 1;
+			this->button1->Text = L"Room Information";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MainForm::button1_Click);
+			// 
+			// button2
+			// 
+			this->button2->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button2->Location = System::Drawing::Point(504, 269);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(272, 55);
+			this->button2->TabIndex = 2;
+			this->button2->Text = L"Doctor\'s Information";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MainForm::button2_Click);
+			// 
+			// button3
+			// 
+			this->button3->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button3->Location = System::Drawing::Point(504, 369);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(272, 55);
+			this->button3->TabIndex = 3;
+			this->button3->Text = L"Patient\'s Information";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &MainForm::button3_Click);
+			// 
+			// button4
+			// 
+			this->button4->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button4->Location = System::Drawing::Point(504, 469);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(272, 55);
+			this->button4->TabIndex = 4;
+			this->button4->Text = L"Nurses\'s Information";
+			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &MainForm::button4_Click);
+			// 
+			// button5
+			// 
+			this->button5->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button5->Location = System::Drawing::Point(504, 569);
+			this->button5->Name = L"button5";
+			this->button5->Size = System::Drawing::Size(272, 55);
+			this->button5->TabIndex = 5;
+			this->button5->Text = L"WardBoy\'s Information";
+			this->button5->UseVisualStyleBackColor = true;
+			// 
+			// pictureBox2
+			// 
+			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
+			this->pictureBox2->Location = System::Drawing::Point(433, 70);
+			this->pictureBox2->Name = L"pictureBox2";
+			this->pictureBox2->Size = System::Drawing::Size(417, 642);
+			this->pictureBox2->TabIndex = 6;
+			this->pictureBox2->TabStop = false;
 			// 
 			// MainForm
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->ClientSize = System::Drawing::Size(1262, 753);
+			this->Controls->Add(this->button5);
+			this->Controls->Add(this->button4);
+			this->Controls->Add(this->button3);
+			this->Controls->Add(this->button2);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->pictureBox1);
+			this->Controls->Add(this->pictureBox2);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MaximizeBox = false;
 			this->Name = L"MainForm";
 			this->Text = L"HospitalDB";
+			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 
 #pragma endregion
-	};
+	private: System::Void MainForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }
