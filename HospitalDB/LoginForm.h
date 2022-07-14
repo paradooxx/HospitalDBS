@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Sql/LoginQueries.h"
-#include "User.h"
 #include "MainForm.h"
 
 namespace HospitalDB {

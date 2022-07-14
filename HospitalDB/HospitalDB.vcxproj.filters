@@ -3,11 +3,13 @@
   <ItemGroup>
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="LoginForm.cpp" />
+    <ClCompile Include="RoomInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainForm.h" />
     <ClInclude Include="Sql\SqlQueries.h" />
     <ClInclude Include="LoginForm.h" />
     <ClInclude Include="Sql\LoginQueries.h" />
+    <ClInclude Include="RoomInfo.h" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,9 @@
+D:\Projects\HospitalDBS\x64\Debug\HospitalDB.exe.config
+D:\Projects\HospitalDBS\HospitalDB\x64\Debug\HospitalDB.vcxproj.AssemblyReference.cache
+D:\Projects\HospitalDBS\HospitalDB\x64\Debug\HospitalDB.vcxproj.SuggestedBindingRedirects.cache
+D:\Projects\HospitalDBS\HospitalDB\x64\Debug\HospitalDB.exe.config
+D:\Projects\HospitalDBS\HospitalDB\x64\Debug\HospitalDB.LoginForm.resources
+D:\Projects\HospitalDBS\HospitalDB\x64\Debug\HospitalDB.MainForm.resources
+D:\Projects\HospitalDBS\HospitalDB\x64\Debug\HospitalDB.vcxproj.GenerateResource.cache
+D:\Projects\HospitalDBS\HospitalDB\x64\Debug\HospitalDB.vcxproj.CopyComplete
+D:\Projects\HospitalDBS\HospitalDB\x64\Debug\HospitalDB.RoomInfo.resources

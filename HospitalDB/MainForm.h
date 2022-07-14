@@ -1,6 +1,8 @@
-#pragma once
+#ifndef MAINFORM_H
+#define MAINFORM_H
 
-#include "Sql/SqlQueries.h"
+#include "Sql/SqlQueries.h" 
+#include "RoomInfo.h"
 
 //Connect connect;
 namespace HospitalDB {
@@ -29,6 +31,7 @@ namespace HospitalDB {
 			//TODO: Add the constructor code here
 			//connect.ConnectDB();
 			//connect.CreateTable();
+			//roominfo.ShowDialog();
 			//connect.CloseDB();
 			//
 		}
@@ -45,11 +48,16 @@ namespace HospitalDB {
 			}
 		}
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
-	private: System::Windows::Forms::Button^ button4;
-	private: System::Windows::Forms::Button^ button5;
+	private: System::Windows::Forms::Button^ room;
+	private: System::Windows::Forms::Button^ doctor;
+	private: System::Windows::Forms::Button^ patient;
+	private: System::Windows::Forms::Button^ nurse;
+	private: System::Windows::Forms::Button^ wardboy;
+
+
+
+
+
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
 
 
@@ -72,11 +80,11 @@ namespace HospitalDB {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->button5 = (gcnew System::Windows::Forms::Button());
+			this->room = (gcnew System::Windows::Forms::Button());
+			this->doctor = (gcnew System::Windows::Forms::Button());
+			this->patient = (gcnew System::Windows::Forms::Button());
+			this->nurse = (gcnew System::Windows::Forms::Button());
+			this->wardboy = (gcnew System::Windows::Forms::Button());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
@@ -90,66 +98,62 @@ namespace HospitalDB {
 			this->pictureBox1->Size = System::Drawing::Size(272, 67);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
-			this->pictureBox1->Click += gcnew System::EventHandler(this, &MainForm::pictureBox1_Click);
 			// 
-			// button1
+			// room
 			// 
-			this->button1->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->room->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(504, 169);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(272, 55);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"Room Information";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MainForm::button1_Click);
+			this->room->Location = System::Drawing::Point(504, 169);
+			this->room->Name = L"room";
+			this->room->Size = System::Drawing::Size(272, 55);
+			this->room->TabIndex = 1;
+			this->room->Text = L"Room Information";
+			this->room->UseVisualStyleBackColor = true;
+			this->room->Click += gcnew System::EventHandler(this, &MainForm::room_Click);
 			// 
-			// button2
+			// doctor
 			// 
-			this->button2->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->doctor->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button2->Location = System::Drawing::Point(504, 269);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(272, 55);
-			this->button2->TabIndex = 2;
-			this->button2->Text = L"Doctor\'s Information";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &MainForm::button2_Click);
+			this->doctor->Location = System::Drawing::Point(504, 269);
+			this->doctor->Name = L"doctor";
+			this->doctor->Size = System::Drawing::Size(272, 55);
+			this->doctor->TabIndex = 2;
+			this->doctor->Text = L"Doctor\'s Information";
+			this->doctor->UseVisualStyleBackColor = true;
 			// 
-			// button3
+			// patient
 			// 
-			this->button3->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->patient->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button3->Location = System::Drawing::Point(504, 369);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(272, 55);
-			this->button3->TabIndex = 3;
-			this->button3->Text = L"Patient\'s Information";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &MainForm::button3_Click);
+			this->patient->Location = System::Drawing::Point(504, 369);
+			this->patient->Name = L"patient";
+			this->patient->Size = System::Drawing::Size(272, 55);
+			this->patient->TabIndex = 3;
+			this->patient->Text = L"Patient\'s Information";
+			this->patient->UseVisualStyleBackColor = true;
 			// 
-			// button4
+			// nurse
 			// 
-			this->button4->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->nurse->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button4->Location = System::Drawing::Point(504, 469);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(272, 55);
-			this->button4->TabIndex = 4;
-			this->button4->Text = L"Nurses\'s Information";
-			this->button4->UseVisualStyleBackColor = true;
-			this->button4->Click += gcnew System::EventHandler(this, &MainForm::button4_Click);
+			this->nurse->Location = System::Drawing::Point(504, 469);
+			this->nurse->Name = L"nurse";
+			this->nurse->Size = System::Drawing::Size(272, 55);
+			this->nurse->TabIndex = 4;
+			this->nurse->Text = L"Nurses\'s Information";
+			this->nurse->UseVisualStyleBackColor = true;
 			// 
-			// button5
+			// wardboy
 			// 
-			this->button5->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->wardboy->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button5->Location = System::Drawing::Point(504, 569);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(272, 55);
-			this->button5->TabIndex = 5;
-			this->button5->Text = L"WardBoy\'s Information";
-			this->button5->UseVisualStyleBackColor = true;
+			this->wardboy->Location = System::Drawing::Point(504, 569);
+			this->wardboy->Name = L"wardboy";
+			this->wardboy->Size = System::Drawing::Size(272, 55);
+			this->wardboy->TabIndex = 5;
+			this->wardboy->Text = L"WardBoy\'s Information";
+			this->wardboy->UseVisualStyleBackColor = true;
 			// 
 			// pictureBox2
 			// 
@@ -164,11 +168,11 @@ namespace HospitalDB {
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->ClientSize = System::Drawing::Size(1262, 753);
-			this->Controls->Add(this->button5);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->wardboy);
+			this->Controls->Add(this->nurse);
+			this->Controls->Add(this->patient);
+			this->Controls->Add(this->doctor);
+			this->Controls->Add(this->room);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->pictureBox2);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
@@ -176,7 +180,6 @@ namespace HospitalDB {
 			this->MaximizeBox = false;
 			this->Name = L"MainForm";
 			this->Text = L"HospitalDB";
-			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			this->ResumeLayout(false);
@@ -184,17 +187,13 @@ namespace HospitalDB {
 		}
 
 #pragma endregion
-	private: System::Void MainForm_Load(System::Object^ sender, System::EventArgs^ e) {
-	}
-private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+private: System::Void room_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
+	HospitalDB::RoomInfo Room;
+	Room.ShowDialog();
+	this->Show();
+}
 };
 }
+
+#endif
