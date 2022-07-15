@@ -54,14 +54,7 @@ namespace HospitalDB {
 	private: System::Windows::Forms::Button^ nurse;
 	private: System::Windows::Forms::Button^ wardboy;
 
-
-
-
-
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
-
-
-
 
 	protected:
 
@@ -195,5 +188,4 @@ private: System::Void room_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
-
 #endif

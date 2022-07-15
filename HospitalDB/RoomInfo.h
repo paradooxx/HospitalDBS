@@ -277,7 +277,7 @@ namespace HospitalDB {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
 				static_cast<System::Int32>(static_cast<System::Byte>(113)));
-			this->ClientSize = System::Drawing::Size(1262, 673);
+			this->ClientSize = System::Drawing::Size(1280, 720);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->roomNo);
 			this->Controls->Add(this->roomCap);

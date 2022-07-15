@@ -1,5 +1,6 @@
   HospitalDB.LoginForm.resources - Embedded, ContainedInManifestFile, 
   HospitalDB.MainForm.resources - Embedded, ContainedInManifestFile, 
+  HospitalDB.RoomInfo.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly HospitalDB, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
 	hash=SHA1, flags=PublicKey
@@ -233,17 +234,15 @@ Class Login: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     ConnectDB(): PrivateScope, Public, HideBySig
     LoginDB(): PrivateScope, Public, HideBySig
     GetData(): PrivateScope, Public, HideBySig
-Class User: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Fields:
-    System.String username : Public
-    System.String password : Public
 Class Connect: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
     ConnectDB(): PrivateScope, Public, HideBySig
     CreateTable(): PrivateScope, Public, HideBySig
     CloseDB(): PrivateScope, Public, HideBySig
+Class HospitalDB.RoomInfo: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class HospitalDB.MainForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

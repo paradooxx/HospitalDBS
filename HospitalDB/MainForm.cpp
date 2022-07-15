@@ -16,6 +16,6 @@ void Main(array<String^>^ args)
 	HospitalDB::RoomInfo RoomInfo;
 
 	//MainForm.ShowDialog();
-	//LoginForm.ShowDialog();
-	RoomInfo.ShowDialog();
+	LoginForm.ShowDialog();
+	//RoomInfo.ShowDialog();
 }

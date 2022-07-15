@@ -46,12 +46,6 @@ public: System::Void CreateTable()
 
 		sqlrd = sqlcmd->ExecuteReader();
 		sqlrd->Close();
-		//reading table data
-		sqlcmd->CommandText = "select * from room;";
-		sqlrd = sqlcmd->ExecuteReader();
-		sqldt->Load(sqlrd);
-		sqlrd->Close();
-
 	}
 	catch (Exception^ ex)
 	{
