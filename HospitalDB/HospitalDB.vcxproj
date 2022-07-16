@@ -127,11 +127,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DoctorTable.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="RoomInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DoctorTable.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -145,6 +149,9 @@
     <ClInclude Include="Sql\SqlQueries.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DoctorTable.resx">
+      <DependentUpon>DoctorTable.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>
     </EmbeddedResource>

@@ -4,6 +4,7 @@
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="RoomInfo.cpp" />
+    <ClCompile Include="DoctorTable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainForm.h" />
@@ -11,5 +12,6 @@
     <ClInclude Include="LoginForm.h" />
     <ClInclude Include="Sql\LoginQueries.h" />
     <ClInclude Include="RoomInfo.h" />
+    <ClInclude Include="DoctorTable.h" />
   </ItemGroup>
 </Project>

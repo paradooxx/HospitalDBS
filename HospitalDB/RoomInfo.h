@@ -168,6 +168,7 @@ namespace HospitalDB {
 			this->update->TabIndex = 10;
 			this->update->Text = L"Update";
 			this->update->UseVisualStyleBackColor = true;
+			this->update->Click += gcnew System::EventHandler(this, &RoomInfo::update_Click);
 			// 
 			// Del
 			// 
@@ -181,6 +182,7 @@ namespace HospitalDB {
 			this->Del->TabIndex = 11;
 			this->Del->Text = L"Delete";
 			this->Del->UseVisualStyleBackColor = true;
+			this->Del->Click += gcnew System::EventHandler(this, &RoomInfo::Del_Click);
 			// 
 			// refresh
 			// 
@@ -194,6 +196,7 @@ namespace HospitalDB {
 			this->refresh->TabIndex = 12;
 			this->refresh->Text = L"Refresh";
 			this->refresh->UseVisualStyleBackColor = true;
+			this->refresh->Click += gcnew System::EventHandler(this, &RoomInfo::refresh_Click);
 			// 
 			// exit
 			// 
@@ -364,6 +367,24 @@ namespace HospitalDB {
 		{
 			MessageBox::Show(e->Message, "Data Entry Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		}
+	}
+	private: System::Void update_Click(System::Object^ sender, System::EventArgs^ e) {
+		MessageBox::Show("Cannot update room information from here.", "Update Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+	}
+	private: System::Void refresh_Click(System::Object^ sender, System::EventArgs^ e) {
+		try
+		{
+			roomNo->Text = "";
+			roomType->Text = "";
+			roomCap->Text = "";
+		}
+		catch (Exception^ e)
+		{
+			MessageBox::Show(e->Message, "Data Entry Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
+	}
+	private: System::Void Del_Click(System::Object^ sender, System::EventArgs^ e) {
+		MessageBox::Show("Data delete error\nCannot delete from here","Delete Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
 	}
 };
 }

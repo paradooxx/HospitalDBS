@@ -20,3 +20,4 @@ D:\Projects\HospitalDBS\HospitalDB\Debug\HospitalDB.MainForm.resources
 D:\Projects\HospitalDBS\HospitalDB\Debug\HospitalDB.RoomInfo.resources
 D:\Projects\HospitalDBS\HospitalDB\Debug\HospitalDB.vcxproj.GenerateResource.cache
 D:\Projects\HospitalDBS\HospitalDB\Debug\HospitalDB.vcxproj.CopyComplete
+D:\Projects\HospitalDBS\HospitalDB\Debug\HospitalDB.DoctorTable.resources
