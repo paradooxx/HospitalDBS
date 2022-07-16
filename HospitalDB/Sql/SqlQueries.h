@@ -46,6 +46,14 @@ public: System::Void CreateTable()
 
 		sqlrd = sqlcmd->ExecuteReader();
 		sqlrd->Close();
+		sqlcmd->CommandText = "create table if not exists doctor("
+								"doctorID int(10),"
+								"doctorName varchar(40),"
+								"doctorPhoneNum bigint(12),"
+								"primary key(doctorID));";
+
+		sqlrd = sqlcmd->ExecuteReader();
+		sqlrd->Close();
 	}
 	catch (Exception^ ex)
 	{

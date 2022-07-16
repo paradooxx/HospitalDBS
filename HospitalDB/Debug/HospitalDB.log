@@ -1,7 +1,6 @@
 ﻿  DoctorTable.cpp
   LoginForm.cpp
   MainForm.cpp
-  RoomInfo.cpp
   Generating Code...
   DoctorTable.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   HospitalDB.vcxproj -> D:\Projects\HospitalDBS\Debug\HospitalDB.exe
