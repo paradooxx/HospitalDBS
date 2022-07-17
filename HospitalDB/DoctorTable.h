@@ -357,6 +357,18 @@ namespace HospitalDB {
 	{
 		try
 		{
+			sqlconn->ConnectionString = "datasource = localhost;"
+				"port = 3306; "
+				"username = root;"
+				"password = 7240paio6921;"
+				"database = hospitaldb";
+			sqlcmd->Connection = sqlconn;
+
+			MySqlDataAdapter^ sqlda = gcnew MySqlDataAdapter("select * from doctor", sqlconn);
+			DataTable^ datatb = gcnew DataTable();
+			sqlda->Fill(datatb);
+			docTable->DataSource = datatb;
+
 			docId->Text = "";
 			docName->Text = "";
 			docNum->Text = "";
@@ -387,7 +399,7 @@ namespace HospitalDB {
 			if (query == System::Windows::Forms::DialogResult::Yes)
 			{
 				String^ ID = docId->Text;
-				MySqlCommand^ sqlcmd = gcnew MySqlCommand("delete from doctor where docId = " + ID + "", sqlconn);
+				MySqlCommand^ sqlcmd = gcnew MySqlCommand("delete from doctor where doctorID = " + ID + "", sqlconn);
 				sqlconn->Open();
 				sqlrd = sqlcmd->ExecuteReader();
 				MessageBox::Show("Record Deleted!", "Successful", MessageBoxButtons::OK, MessageBoxIcon::Information);
@@ -398,6 +410,7 @@ namespace HospitalDB {
 		{
 			MessageBox::Show(e->Message, "Delete Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		}
+		RefreshDB();
 	}
 };
 }

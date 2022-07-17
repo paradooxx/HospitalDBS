@@ -21,8 +21,8 @@ void Main(array<String^>^ args)
 
 	connect.ConnectDB();
 	connect.CreateTable();
-	DoctorTable.ShowDialog();
-	//MainForm.ShowDialog();
+	//DoctorTable.ShowDialog();
+	MainForm.ShowDialog();
 	//LoginForm.ShowDialog();
 	//RoomInfo.ShowDialog();
 	connect.CloseDB();
