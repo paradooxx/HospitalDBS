@@ -1,6 +1,8 @@
-﻿  DoctorTable.cpp
-  LoginForm.cpp
+﻿  LoginForm.cpp
+D:\Projects\HospitalDBS\HospitalDB\DoctorTable.h(396,21): warning C4101: 'e': unreferenced local variable
   MainForm.cpp
+D:\Projects\HospitalDBS\HospitalDB\DoctorTable.h(396,21): warning C4101: 'e': unreferenced local variable
+  RoomInfo.cpp
   Generating Code...
   DoctorTable.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   HospitalDB.vcxproj -> D:\Projects\HospitalDBS\Debug\HospitalDB.exe

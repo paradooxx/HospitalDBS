@@ -223,7 +223,7 @@ namespace HospitalDB {
 			this->roomTable->RowTemplate->Height = 24;
 			this->roomTable->Size = System::Drawing::Size(861, 611);
 			this->roomTable->TabIndex = 14;
-			this->roomTable->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &RoomInfo::roomTable_CellContentClick);
+			this->roomTable->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &RoomInfo::roomTable_CellClick);
 			// 
 			// roomType
 			// 
@@ -333,17 +333,6 @@ namespace HospitalDB {
 	private: System::Void exit_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
 	}
-	private: System::Void roomTable_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-		try {
-			roomNo->Text = roomTable->SelectedRows[0]->Cells[0]->Value->ToString();
-			roomType->Text = roomTable->SelectedRows[1]->Cells[1]->Value->ToString();
-			roomCap->Text = roomTable->SelectedRows[2]->Cells[2]->Value->ToString();
-		}
-		catch (Exception^ e)
-		{
-			MessageBox::Show(e->Message, "Connection Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-		}
-	}
 
 	//add new data button click
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -385,6 +374,17 @@ namespace HospitalDB {
 	}
 	private: System::Void Del_Click(System::Object^ sender, System::EventArgs^ e) {
 		MessageBox::Show("Data delete error\nCannot delete from here","Delete Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+	}
+	private: System::Void roomTable_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+		try {
+			roomNo->Text = roomTable->SelectedRows[0]->Cells[0]->Value->ToString();
+			roomType->Text = roomTable->SelectedRows[0]->Cells[1]->Value->ToString();
+			roomCap->Text = roomTable->SelectedRows[0]->Cells[2]->Value->ToString();
+		}
+		catch (Exception^ e)
+		{
+			MessageBox::Show(e->Message, "Connection Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
 	}
 };
 }

@@ -244,7 +244,7 @@ namespace HospitalDB {
 			this->docTable->RowTemplate->Height = 24;
 			this->docTable->Size = System::Drawing::Size(861, 611);
 			this->docTable->TabIndex = 35;
-			this->docTable->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &DoctorTable::docTable_CellContentClick);
+			this->docTable->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &DoctorTable::docTable_CellClick);
 			// 
 			// docId
 			// 
@@ -318,17 +318,6 @@ namespace HospitalDB {
 	private: System::Void exit_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
 	}
-	private: System::Void docTable_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-		try {
-			docId->Text = docTable->SelectedRows[0]->Cells[0]->Value->ToString();
-			docName->Text = docTable->SelectedRows[1]->Cells[1]->Value->ToString();
-			docNum->Text = docTable->SelectedRows[2]->Cells[2]->Value->ToString();
-		}
-		catch (Exception^ e)
-		{
-			MessageBox::Show(e->Message, "Connection Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-		}
-	}
 	
 	private: System::Void addbutton_Click(System::Object^ sender, System::EventArgs^ e) {
 		sqlconn->ConnectionString = "datasource = localhost;"
@@ -381,8 +370,35 @@ namespace HospitalDB {
 	private: System::Void refresh_Click(System::Object^ sender, System::EventArgs^ e) {
 		RefreshDB();
 	}
+
 	private: System::Void update_Click(System::Object^ sender, System::EventArgs^ e) {
+		try
+		{
+			sqlconn->ConnectionString = "datasource = localhost;"
+				"port = 3306; "
+				"username = root;"
+				"password = 7240paio6921;"
+				"database = hospitaldb";
+			sqlcmd->Connection = sqlconn;
+
+			String^ ID = docId->Text;
+			String^ Name = docName->Text;
+			String^ Num = docNum->Text;
+
+			sqlcmd->CommandText = "update doctor set docId = '" + ID + "', docName = '" + Name + "', docNum = '" + Num + "", sqlconn ;
+
+			sqlconn->Open();
+			sqlrd = sqlcmd->ExecuteReader();
+			sqlconn->Close();
+			GetData();
+			RefreshDB();
+		}
+		catch (Exception^ e)
+		{
+
+		}
 	}
+
 	private: System::Void Del_Click(System::Object^ sender, System::EventArgs^ e) {
 		System::Windows::Forms::DialogResult query;
 		try
@@ -411,6 +427,17 @@ namespace HospitalDB {
 			MessageBox::Show(e->Message, "Delete Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		}
 		RefreshDB();
+	}
+	private: System::Void docTable_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+		try {
+			docId->Text = docTable->SelectedRows[0]->Cells[0]->Value->ToString();
+			docName->Text = docTable->SelectedRows[0]->Cells[1]->Value->ToString();
+			docNum->Text = docTable->SelectedRows[0]->Cells[2]->Value->ToString();
+		}
+		catch (Exception^ e)
+		{
+			MessageBox::Show(e->Message, "Connection Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
 	}
 };
 }
