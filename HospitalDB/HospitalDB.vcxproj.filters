@@ -4,7 +4,6 @@
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="RoomInfo.cpp" />
-    <ClCompile Include="DoctorTable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainForm.h" />

@@ -385,7 +385,7 @@ namespace HospitalDB {
 			String^ Name = docName->Text;
 			String^ Num = docNum->Text;
 
-			sqlcmd->CommandText = "update doctor set docId = '" + ID + "', docName = '" + Name + "', docNum = '" + Num + "", sqlconn ;
+			sqlcmd->CommandText = "update doctor set doctorId = '" + ID + "', doctorName = '" + Name + "', doctorPhoneNum = '" + Num + "' where doctorId = " + ID + "", sqlconn ;
 
 			sqlconn->Open();
 			sqlrd = sqlcmd->ExecuteReader();
@@ -395,7 +395,7 @@ namespace HospitalDB {
 		}
 		catch (Exception^ e)
 		{
-
+			MessageBox::Show(e->Message, "Data Update Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		}
 	}
 
