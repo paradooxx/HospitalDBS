@@ -1,6 +1,7 @@
   HospitalDB.DoctorTable.resources - Embedded, ContainedInManifestFile, 
   HospitalDB.LoginForm.resources - Embedded, ContainedInManifestFile, 
   HospitalDB.MainForm.resources - Embedded, ContainedInManifestFile, 
+  HospitalDB.PatientInfo.resources - Embedded, ContainedInManifestFile, 
   HospitalDB.RoomInfo.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly HospitalDB, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
@@ -227,14 +228,6 @@ Assembly System.Xml.XPath, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f
 	hash=None, flags=None
 Assembly System.Xml.XPath.XDocument, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
 	hash=None, flags=None
-Class Login: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Fields:
-    MySql.Data.MySqlClient.MySqlConnection sqlConn : Public
-  Methods:
-    ConnectDB(): PrivateScope, Public, HideBySig
-    LoginDB(): PrivateScope, Public, HideBySig
-    GetData(): PrivateScope, Public, HideBySig
 Class Connect: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
@@ -247,9 +240,20 @@ Class HospitalDB.RoomInfo: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
 Class HospitalDB.DoctorTable: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class HospitalDB.PatientInfo: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class HospitalDB.MainForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Login: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    MySql.Data.MySqlClient.MySqlConnection sqlConn : Public
+  Methods:
+    ConnectDB(): PrivateScope, Public, HideBySig
+    LoginDB(): PrivateScope, Public, HideBySig
+    GetData(): PrivateScope, Public, HideBySig
 Class HospitalDB.LoginForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

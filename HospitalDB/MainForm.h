@@ -4,6 +4,7 @@
 #include "Sql/SqlQueries.h" 
 #include "RoomInfo.h"
 #include "DoctorTable.h"
+#include "PatientInfo.h"
 
 //Connect connect;
 namespace HospitalDB {
@@ -127,6 +128,7 @@ namespace HospitalDB {
 			this->patient->TabIndex = 3;
 			this->patient->Text = L"Patient\'s Information";
 			this->patient->UseVisualStyleBackColor = true;
+			this->patient->Click += gcnew System::EventHandler(this, &MainForm::patient_Click);
 			// 
 			// nurse
 			// 
@@ -192,6 +194,12 @@ private: System::Void doctor_Click(System::Object^ sender, System::EventArgs^ e)
 	this->Hide();
 	HospitalDB::DoctorTable Drtable;
 	Drtable.ShowDialog();
+	this->Show();
+}
+private: System::Void patient_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
+	HospitalDB::PatientInfo PatientInfo;
+	PatientInfo.ShowDialog();
 	this->Show();
 }
 };

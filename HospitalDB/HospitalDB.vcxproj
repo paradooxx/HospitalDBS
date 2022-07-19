@@ -127,9 +127,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="MainForm.cpp" />
-    <ClCompile Include="RoomInfo.cpp" />
+    <ClCompile Include="PatientInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DoctorTable.h">
@@ -139,6 +138,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MainForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PatientInfo.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="RoomInfo.h">
@@ -156,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientInfo.resx">
+      <DependentUpon>PatientInfo.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RoomInfo.resx">
       <DependentUpon>RoomInfo.h</DependentUpon>
