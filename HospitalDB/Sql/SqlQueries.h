@@ -39,19 +39,34 @@ public: System::Void CreateTable()
 		//sqldt->Load(sqlrd);      //to read table columns
 		//sqlrd->Close();
 		sqlcmd->CommandText = "create table if not exists room("
-								"roomNo int(10),"
-								"roomtype varchar(10),"
-								"capacity int(10),"
-								"primary key(roomNo));";
+			"roomNo int(10),"
+			"roomtype varchar(10),"
+			"capacity int(10),"
+			"primary key(roomNo));";
 
 		sqlrd = sqlcmd->ExecuteReader();
 		sqlrd->Close();
 		sqlcmd->CommandText = "create table if not exists doctor("
-								"doctorID int(10),"
-								"doctorName varchar(40),"
-								"doctorPhoneNum bigint(12),"
-								"primary key(doctorID));";
+			"doctorID int(10),"
+			"doctorName varchar(40),"
+			"doctorPhoneNum bigint(12),"
+			"primary key(doctorID));";
 
+		sqlrd = sqlcmd->ExecuteReader();
+		sqlrd->Close();
+
+		sqlcmd->CommandText = "create table if not exists patient("
+			"patientID int(10),"
+			"fullname varchar(50),"
+			"phoneNo bigint,"
+			"gender varchar(10),"
+			"disease varchar(20),"
+			"treatment varchar(10),"
+			"roomNo int(10),"
+			"doctorID int(10),"
+			"foreign key(doctorID) references doctor(doctorId) on delete cascade on update cascade,"
+			"foreign key(roomNo) references room(roomNo) on delete cascade on update cascade,"
+			"primary key(patientID));";
 		sqlrd = sqlcmd->ExecuteReader();
 		sqlrd->Close();
 	}
