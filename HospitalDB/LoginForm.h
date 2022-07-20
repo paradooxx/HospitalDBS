@@ -173,7 +173,7 @@ namespace HospitalDB {
 			this->MaximizeBox = false;
 			this->Name = L"LoginForm";
 			this->Text = L"DataBase Login";
-			this->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &LoginForm::LoginEnter);
+			this->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &LoginForm::LoginForm_KeyPress);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -208,9 +208,9 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 				HospitalDB::MainForm MainForm;
 				MainForm.ShowDialog();
 			}
-			else if(count > 1)
+			else if (count > 1)
 				MessageBox::Show("Login details duplicate!", "HospitalDB", MessageBoxButtons::OK, MessageBoxIcon::Information);
-			else if(username->Length == 0 || password->Length == 0)
+			else if (username->Length == 0 || password->Length == 0)
 				MessageBox::Show("Username or password empty!", "HospitalDB", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			else
 				MessageBox::Show("Login Failed!\nTry Again", "HospitalDB", MessageBoxButtons::OK, MessageBoxIcon::Information);
@@ -219,8 +219,8 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		{
 			MessageBox::Show(ex->Message, "Connection Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		}
-}
-private: System::Void LoginEnter(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+	}
+private: System::Void LoginForm_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
 	try
 	{
 		if (e->KeyChar == (char)13)

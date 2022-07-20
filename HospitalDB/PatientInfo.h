@@ -41,7 +41,8 @@ namespace HospitalDB {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::ComboBox^ comboBox1;
+	private: System::Windows::Forms::ComboBox^ gender;
+
 
 
 
@@ -49,15 +50,22 @@ namespace HospitalDB {
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::ComboBox^ comboBox2;
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::ComboBox^ comboBox3;
+	private: System::Windows::Forms::ComboBox^ treatment;
+
 
 	private: System::Windows::Forms::MaskedTextBox^ maskedTextBox2;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::Label^ label8;
-	private: System::Windows::Forms::ComboBox^ comboBox4;
+	private: System::Windows::Forms::ComboBox^ roomNo;
+
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::DataGridView^ docTable;
+	private: System::Windows::Forms::Button^ addbutton;
+	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ button4;
 
 
 
@@ -83,18 +91,23 @@ namespace HospitalDB {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->gender = (gcnew System::Windows::Forms::ComboBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->comboBox3 = (gcnew System::Windows::Forms::ComboBox());
+			this->treatment = (gcnew System::Windows::Forms::ComboBox());
 			this->maskedTextBox2 = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->comboBox4 = (gcnew System::Windows::Forms::ComboBox());
+			this->roomNo = (gcnew System::Windows::Forms::ComboBox());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->docTable = (gcnew System::Windows::Forms::DataGridView());
+			this->addbutton = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->button4 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->docTable))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -167,20 +180,16 @@ namespace HospitalDB {
 			this->label1->TabIndex = 37;
 			this->label1->Text = L"Patinet ID";
 			// 
-			// comboBox1
+			// gender
 			// 
-			this->comboBox1->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->gender->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(21) {
-				L"9000", L"9001", L"9002", L"9003", L"9004", L"9005",
-					L"9006", L"9007", L"9008", L"9009", L"9010", L"9011", L"9012", L"9013", L"9014", L"9015", L"9016", L"9017", L"9018", L"9019",
-					L"9020"
-			});
-			this->comboBox1->Location = System::Drawing::Point(32, 294);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(165, 35);
-			this->comboBox1->TabIndex = 48;
+			this->gender->FormattingEnabled = true;
+			this->gender->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Male", L"Female", L"Other" });
+			this->gender->Location = System::Drawing::Point(32, 294);
+			this->gender->Name = L"gender";
+			this->gender->Size = System::Drawing::Size(165, 35);
+			this->gender->TabIndex = 48;
 			// 
 			// label6
 			// 
@@ -221,20 +230,19 @@ namespace HospitalDB {
 			this->label4->TabIndex = 55;
 			this->label4->Text = L"Doctor ID";
 			// 
-			// comboBox3
+			// treatment
 			// 
-			this->comboBox3->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->treatment->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->comboBox3->FormattingEnabled = true;
-			this->comboBox3->Items->AddRange(gcnew cli::array< System::Object^  >(21) {
-				L"9000", L"9001", L"9002", L"9003", L"9004", L"9005",
-					L"9006", L"9007", L"9008", L"9009", L"9010", L"9011", L"9012", L"9013", L"9014", L"9015", L"9016", L"9017", L"9018", L"9019",
-					L"9020"
+			this->treatment->FormattingEnabled = true;
+			this->treatment->Items->AddRange(gcnew cli::array< System::Object^  >(5) {
+				L"Treatment A", L"Treatment B", L"Treatment C",
+					L"Treatment D", L"Treatment E"
 			});
-			this->comboBox3->Location = System::Drawing::Point(32, 459);
-			this->comboBox3->Name = L"comboBox3";
-			this->comboBox3->Size = System::Drawing::Size(165, 35);
-			this->comboBox3->TabIndex = 54;
+			this->treatment->Location = System::Drawing::Point(32, 459);
+			this->treatment->Name = L"treatment";
+			this->treatment->Size = System::Drawing::Size(165, 35);
+			this->treatment->TabIndex = 54;
 			// 
 			// maskedTextBox2
 			// 
@@ -281,20 +289,19 @@ namespace HospitalDB {
 			this->label8->TabIndex = 49;
 			this->label8->Text = L"Treatment";
 			// 
-			// comboBox4
+			// roomNo
 			// 
-			this->comboBox4->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->roomNo->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->comboBox4->FormattingEnabled = true;
-			this->comboBox4->Items->AddRange(gcnew cli::array< System::Object^  >(21) {
-				L"9000", L"9001", L"9002", L"9003", L"9004", L"9005",
-					L"9006", L"9007", L"9008", L"9009", L"9010", L"9011", L"9012", L"9013", L"9014", L"9015", L"9016", L"9017", L"9018", L"9019",
-					L"9020"
+			this->roomNo->FormattingEnabled = true;
+			this->roomNo->Items->AddRange(gcnew cli::array< System::Object^  >(15) {
+				L"101", L"102", L"103", L"104", L"105", L"201", L"202",
+					L"203", L"204", L"205", L"301", L"302", L"303", L"304", L"305"
 			});
-			this->comboBox4->Location = System::Drawing::Point(32, 545);
-			this->comboBox4->Name = L"comboBox4";
-			this->comboBox4->Size = System::Drawing::Size(165, 35);
-			this->comboBox4->TabIndex = 57;
+			this->roomNo->Location = System::Drawing::Point(32, 545);
+			this->roomNo->Name = L"roomNo";
+			this->roomNo->Size = System::Drawing::Size(165, 35);
+			this->roomNo->TabIndex = 57;
 			// 
 			// label9
 			// 
@@ -317,8 +324,74 @@ namespace HospitalDB {
 			this->docTable->Name = L"docTable";
 			this->docTable->RowHeadersWidth = 51;
 			this->docTable->RowTemplate->Height = 24;
-			this->docTable->Size = System::Drawing::Size(1010, 610);
+			this->docTable->Size = System::Drawing::Size(1010, 544);
 			this->docTable->TabIndex = 59;
+			// 
+			// addbutton
+			// 
+			this->addbutton->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->addbutton->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
+				static_cast<System::Int32>(static_cast<System::Byte>(113)));
+			this->addbutton->Location = System::Drawing::Point(235, 618);
+			this->addbutton->Name = L"addbutton";
+			this->addbutton->Size = System::Drawing::Size(165, 38);
+			this->addbutton->TabIndex = 60;
+			this->addbutton->Text = L"AddData";
+			this->addbutton->UseVisualStyleBackColor = true;
+			// 
+			// button1
+			// 
+			this->button1->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
+				static_cast<System::Int32>(static_cast<System::Byte>(113)));
+			this->button1->Location = System::Drawing::Point(450, 618);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(165, 38);
+			this->button1->TabIndex = 61;
+			this->button1->Text = L"Update";
+			this->button1->UseVisualStyleBackColor = true;
+			// 
+			// button2
+			// 
+			this->button2->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
+				static_cast<System::Int32>(static_cast<System::Byte>(113)));
+			this->button2->Location = System::Drawing::Point(660, 618);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(165, 38);
+			this->button2->TabIndex = 62;
+			this->button2->Text = L"Delete";
+			this->button2->UseVisualStyleBackColor = true;
+			// 
+			// button3
+			// 
+			this->button3->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button3->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
+				static_cast<System::Int32>(static_cast<System::Byte>(113)));
+			this->button3->Location = System::Drawing::Point(872, 618);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(165, 38);
+			this->button3->TabIndex = 63;
+			this->button3->Text = L"Refresh";
+			this->button3->UseVisualStyleBackColor = true;
+			// 
+			// button4
+			// 
+			this->button4->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
+				static_cast<System::Int32>(static_cast<System::Byte>(113)));
+			this->button4->Location = System::Drawing::Point(1080, 618);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(165, 38);
+			this->button4->TabIndex = 64;
+			this->button4->Text = L"Exit";
+			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &PatientInfo::button4_Click);
 			// 
 			// PatientInfo
 			// 
@@ -326,17 +399,22 @@ namespace HospitalDB {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
 				static_cast<System::Int32>(static_cast<System::Byte>(113)));
 			this->ClientSize = System::Drawing::Size(1262, 673);
+			this->Controls->Add(this->button4);
+			this->Controls->Add(this->button3);
+			this->Controls->Add(this->button2);
+			this->Controls->Add(this->button1);
+			this->Controls->Add(this->addbutton);
 			this->Controls->Add(this->docTable);
 			this->Controls->Add(this->label9);
-			this->Controls->Add(this->comboBox4);
+			this->Controls->Add(this->roomNo);
 			this->Controls->Add(this->comboBox2);
 			this->Controls->Add(this->label4);
-			this->Controls->Add(this->comboBox3);
+			this->Controls->Add(this->treatment);
 			this->Controls->Add(this->maskedTextBox2);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->label8);
-			this->Controls->Add(this->comboBox1);
+			this->Controls->Add(this->gender);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->docId);
 			this->Controls->Add(this->docNum);
@@ -355,5 +433,8 @@ namespace HospitalDB {
 
 		}
 #pragma endregion
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
 };
 }
