@@ -428,6 +428,7 @@ namespace HospitalDB {
 		}
 		RefreshDB();
 	}
+
 	private: System::Void docTable_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 		try {
 			docId->Text = docTable->SelectedRows[0]->Cells[0]->Value->ToString();

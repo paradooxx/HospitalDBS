@@ -8,18 +8,25 @@ namespace HospitalDB {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace MySql::Data::MySqlClient;
 
 	/// <summary>
 	/// Summary for PatientInfo
 	/// </summary>
 	public ref class PatientInfo : public System::Windows::Forms::Form
 	{
+		MySqlConnection^ sqlconn = gcnew MySqlConnection();
+		MySqlCommand^ sqlcmd = gcnew MySqlCommand();
+		DataTable^ sqldt = gcnew DataTable();            //for data from table to GUI,    requires namespace System::Data;
+		MySqlDataAdapter^ sqldta = gcnew MySqlDataAdapter();
+		MySqlDataReader^ sqlrd;
 	public:
 		PatientInfo(void)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
+			GetData();
 			//
 		}
 
@@ -34,10 +41,13 @@ namespace HospitalDB {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::ComboBox^ docId;
+	private: System::Windows::Forms::MaskedTextBox^ patNum;
 	protected:
-	private: System::Windows::Forms::MaskedTextBox^ docNum;
-	private: System::Windows::Forms::MaskedTextBox^ docName;
+
+	protected:
+
+	private: System::Windows::Forms::MaskedTextBox^ patName;
+
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label1;
@@ -48,24 +58,31 @@ namespace HospitalDB {
 
 
 	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::ComboBox^ comboBox2;
+	private: System::Windows::Forms::ComboBox^ dID;
+
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::ComboBox^ treatment;
+	private: System::Windows::Forms::MaskedTextBox^ disease;
 
 
-	private: System::Windows::Forms::MaskedTextBox^ maskedTextBox2;
+
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::Label^ label8;
 	private: System::Windows::Forms::ComboBox^ roomNo;
 
 	private: System::Windows::Forms::Label^ label9;
-	private: System::Windows::Forms::DataGridView^ docTable;
+	private: System::Windows::Forms::DataGridView^ patientTable;
+
 	private: System::Windows::Forms::Button^ addbutton;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ update;
+
+	private: System::Windows::Forms::Button^ dele;
+
 	private: System::Windows::Forms::Button^ button3;
 	private: System::Windows::Forms::Button^ button4;
+	private: System::Windows::Forms::MaskedTextBox^ patId;
+
 
 
 
@@ -85,64 +102,49 @@ namespace HospitalDB {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(PatientInfo::typeid));
-			this->docId = (gcnew System::Windows::Forms::ComboBox());
-			this->docNum = (gcnew System::Windows::Forms::MaskedTextBox());
-			this->docName = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->patNum = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->patName = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->gender = (gcnew System::Windows::Forms::ComboBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
+			this->dID = (gcnew System::Windows::Forms::ComboBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->treatment = (gcnew System::Windows::Forms::ComboBox());
-			this->maskedTextBox2 = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->disease = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->roomNo = (gcnew System::Windows::Forms::ComboBox());
 			this->label9 = (gcnew System::Windows::Forms::Label());
-			this->docTable = (gcnew System::Windows::Forms::DataGridView());
+			this->patientTable = (gcnew System::Windows::Forms::DataGridView());
 			this->addbutton = (gcnew System::Windows::Forms::Button());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->update = (gcnew System::Windows::Forms::Button());
+			this->dele = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->docTable))->BeginInit();
+			this->patId = (gcnew System::Windows::Forms::MaskedTextBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->patientTable))->BeginInit();
 			this->SuspendLayout();
 			// 
-			// docId
+			// patNum
 			// 
-			this->docId->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->patNum->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->docId->FormattingEnabled = true;
-			this->docId->Items->AddRange(gcnew cli::array< System::Object^  >(21) {
-				L"9000", L"9001", L"9002", L"9003", L"9004", L"9005",
-					L"9006", L"9007", L"9008", L"9009", L"9010", L"9011", L"9012", L"9013", L"9014", L"9015", L"9016", L"9017", L"9018", L"9019",
-					L"9020"
-			});
-			this->docId->Location = System::Drawing::Point(32, 51);
-			this->docId->Name = L"docId";
-			this->docId->Size = System::Drawing::Size(165, 35);
-			this->docId->TabIndex = 42;
+			this->patNum->Location = System::Drawing::Point(32, 216);
+			this->patNum->Name = L"patNum";
+			this->patNum->Size = System::Drawing::Size(165, 32);
+			this->patNum->TabIndex = 41;
 			// 
-			// docNum
+			// patName
 			// 
-			this->docNum->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->patName->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->docNum->Location = System::Drawing::Point(32, 216);
-			this->docNum->Name = L"docNum";
-			this->docNum->Size = System::Drawing::Size(165, 32);
-			this->docNum->TabIndex = 41;
-			// 
-			// docName
-			// 
-			this->docName->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->docName->Location = System::Drawing::Point(32, 130);
-			this->docName->Name = L"docName";
-			this->docName->Size = System::Drawing::Size(165, 32);
-			this->docName->TabIndex = 40;
+			this->patName->Location = System::Drawing::Point(32, 130);
+			this->patName->Name = L"patName";
+			this->patName->Size = System::Drawing::Size(165, 32);
+			this->patName->TabIndex = 40;
 			// 
 			// label3
 			// 
@@ -174,7 +176,7 @@ namespace HospitalDB {
 			this->label1->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::Color::Transparent;
-			this->label1->Location = System::Drawing::Point(27, 26);
+			this->label1->Location = System::Drawing::Point(27, 29);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(113, 27);
 			this->label1->TabIndex = 37;
@@ -203,20 +205,20 @@ namespace HospitalDB {
 			this->label6->TabIndex = 43;
 			this->label6->Text = L"Gender";
 			// 
-			// comboBox2
+			// dID
 			// 
-			this->comboBox2->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->dID->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(21) {
+			this->dID->FormattingEnabled = true;
+			this->dID->Items->AddRange(gcnew cli::array< System::Object^  >(21) {
 				L"9000", L"9001", L"9002", L"9003", L"9004", L"9005",
 					L"9006", L"9007", L"9008", L"9009", L"9010", L"9011", L"9012", L"9013", L"9014", L"9015", L"9016", L"9017", L"9018", L"9019",
 					L"9020"
 			});
-			this->comboBox2->Location = System::Drawing::Point(32, 621);
-			this->comboBox2->Name = L"comboBox2";
-			this->comboBox2->Size = System::Drawing::Size(165, 35);
-			this->comboBox2->TabIndex = 56;
+			this->dID->Location = System::Drawing::Point(32, 621);
+			this->dID->Name = L"dID";
+			this->dID->Size = System::Drawing::Size(165, 35);
+			this->dID->TabIndex = 56;
 			// 
 			// label4
 			// 
@@ -244,14 +246,14 @@ namespace HospitalDB {
 			this->treatment->Size = System::Drawing::Size(165, 35);
 			this->treatment->TabIndex = 54;
 			// 
-			// maskedTextBox2
+			// disease
 			// 
-			this->maskedTextBox2->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->disease->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->maskedTextBox2->Location = System::Drawing::Point(32, 377);
-			this->maskedTextBox2->Name = L"maskedTextBox2";
-			this->maskedTextBox2->Size = System::Drawing::Size(165, 32);
-			this->maskedTextBox2->TabIndex = 52;
+			this->disease->Location = System::Drawing::Point(32, 377);
+			this->disease->Name = L"disease";
+			this->disease->Size = System::Drawing::Size(165, 32);
+			this->disease->TabIndex = 52;
 			// 
 			// label5
 			// 
@@ -315,17 +317,18 @@ namespace HospitalDB {
 			this->label9->TabIndex = 58;
 			this->label9->Text = L"Patient\'s Information";
 			// 
-			// docTable
+			// patientTable
 			// 
-			this->docTable->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
-			this->docTable->BackgroundColor = System::Drawing::SystemColors::ActiveCaption;
-			this->docTable->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->docTable->Location = System::Drawing::Point(235, 46);
-			this->docTable->Name = L"docTable";
-			this->docTable->RowHeadersWidth = 51;
-			this->docTable->RowTemplate->Height = 24;
-			this->docTable->Size = System::Drawing::Size(1010, 544);
-			this->docTable->TabIndex = 59;
+			this->patientTable->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
+			this->patientTable->BackgroundColor = System::Drawing::SystemColors::ActiveCaption;
+			this->patientTable->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->patientTable->Location = System::Drawing::Point(235, 46);
+			this->patientTable->Name = L"patientTable";
+			this->patientTable->RowHeadersWidth = 51;
+			this->patientTable->RowTemplate->Height = 24;
+			this->patientTable->Size = System::Drawing::Size(1010, 544);
+			this->patientTable->TabIndex = 59;
+			this->patientTable->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &PatientInfo::patientTable_CellClick);
 			// 
 			// addbutton
 			// 
@@ -339,32 +342,35 @@ namespace HospitalDB {
 			this->addbutton->TabIndex = 60;
 			this->addbutton->Text = L"AddData";
 			this->addbutton->UseVisualStyleBackColor = true;
+			this->addbutton->Click += gcnew System::EventHandler(this, &PatientInfo::addbutton_Click);
 			// 
-			// button1
+			// update
 			// 
-			this->button1->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->update->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
+			this->update->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
 				static_cast<System::Int32>(static_cast<System::Byte>(113)));
-			this->button1->Location = System::Drawing::Point(450, 618);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(165, 38);
-			this->button1->TabIndex = 61;
-			this->button1->Text = L"Update";
-			this->button1->UseVisualStyleBackColor = true;
+			this->update->Location = System::Drawing::Point(450, 618);
+			this->update->Name = L"update";
+			this->update->Size = System::Drawing::Size(165, 38);
+			this->update->TabIndex = 61;
+			this->update->Text = L"Update";
+			this->update->UseVisualStyleBackColor = true;
+			this->update->Click += gcnew System::EventHandler(this, &PatientInfo::update_Click);
 			// 
-			// button2
+			// dele
 			// 
-			this->button2->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->dele->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
+			this->dele->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
 				static_cast<System::Int32>(static_cast<System::Byte>(113)));
-			this->button2->Location = System::Drawing::Point(660, 618);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(165, 38);
-			this->button2->TabIndex = 62;
-			this->button2->Text = L"Delete";
-			this->button2->UseVisualStyleBackColor = true;
+			this->dele->Location = System::Drawing::Point(660, 618);
+			this->dele->Name = L"dele";
+			this->dele->Size = System::Drawing::Size(165, 38);
+			this->dele->TabIndex = 62;
+			this->dele->Text = L"Delete";
+			this->dele->UseVisualStyleBackColor = true;
+			this->dele->Click += gcnew System::EventHandler(this, &PatientInfo::dele_Click);
 			// 
 			// button3
 			// 
@@ -378,6 +384,7 @@ namespace HospitalDB {
 			this->button3->TabIndex = 63;
 			this->button3->Text = L"Refresh";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &PatientInfo::button3_Click);
 			// 
 			// button4
 			// 
@@ -393,32 +400,41 @@ namespace HospitalDB {
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &PatientInfo::button4_Click);
 			// 
+			// patId
+			// 
+			this->patId->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->patId->Location = System::Drawing::Point(32, 56);
+			this->patId->Name = L"patId";
+			this->patId->Size = System::Drawing::Size(165, 32);
+			this->patId->TabIndex = 65;
+			// 
 			// PatientInfo
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
 				static_cast<System::Int32>(static_cast<System::Byte>(113)));
 			this->ClientSize = System::Drawing::Size(1262, 673);
+			this->Controls->Add(this->patId);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->dele);
+			this->Controls->Add(this->update);
 			this->Controls->Add(this->addbutton);
-			this->Controls->Add(this->docTable);
+			this->Controls->Add(this->patientTable);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->roomNo);
-			this->Controls->Add(this->comboBox2);
+			this->Controls->Add(this->dID);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->treatment);
-			this->Controls->Add(this->maskedTextBox2);
+			this->Controls->Add(this->disease);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->gender);
 			this->Controls->Add(this->label6);
-			this->Controls->Add(this->docId);
-			this->Controls->Add(this->docNum);
-			this->Controls->Add(this->docName);
+			this->Controls->Add(this->patNum);
+			this->Controls->Add(this->patName);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
@@ -427,14 +443,179 @@ namespace HospitalDB {
 			this->MaximizeBox = false;
 			this->Name = L"PatientInfo";
 			this->Text = L"PatientInfo";
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->docTable))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->patientTable))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Close();
-}
+	private: System::Void GetData()
+	{
+		try
+		{
+			sqlconn->ConnectionString = "datasource = localhost;"
+				"port = 3306; "
+				"username = root;"
+				"password = 7240paio6921;"
+				"database = hospitaldb";
+			sqlconn->Open();
+			sqlcmd->Connection = sqlconn;
+			sqlcmd->CommandText = "select * from patient;";
+			sqlrd = sqlcmd->ExecuteReader();
+			sqldt->Load(sqlrd);
+			sqlrd->Close();
+			sqlconn->Close();
+			patientTable->DataSource = sqldt;
+		}
+		catch (Exception^ e)
+		{
+			MessageBox::Show(e->Message, "Connection Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
+	}
+
+	private: System::Void RefreshDB()
+	{
+		try
+		{
+			sqlconn->ConnectionString = "datasource = localhost;"
+				"port = 3306; "
+				"username = root;"
+				"password = 7240paio6921;"
+				"database = hospitaldb";
+			sqlcmd->Connection = sqlconn;
+
+			MySqlDataAdapter^ sqlda = gcnew MySqlDataAdapter("select * from patient", sqlconn);
+			DataTable^ datatb = gcnew DataTable();
+			sqlda->Fill(datatb);
+			patientTable->DataSource = datatb;
+
+			patId->Text = "";
+			patName->Text = "";
+			patNum->Text = "";
+			gender->Text = "";
+			disease->Text = "";
+			treatment->Text = "";
+			roomNo->Text = "";
+			dID->Text = "";
+		}
+		catch (Exception^ e)
+		{
+			MessageBox::Show(e->Message, "Data Entry Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
+	}
+
+	//exit button click
+	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Close();
+	}
+
+	private: System::Void addbutton_Click(System::Object^ sender, System::EventArgs^ e) {
+		sqlconn->ConnectionString = "datasource = localhost;"
+			"port = 3306; "
+			"username = root;"
+			"password = 7240paio6921;"
+			"database = hospitaldb";
+		sqlconn->Open();
+		sqlcmd->Connection = sqlconn;
+		try
+		{
+			sqlcmd->CommandText = "insert into patient values "
+				"('" + patId->Text + "', '" + patName->Text + "', '" + patNum->Text + "', '" + gender->Text + "', '" + disease->Text + "', '" + treatment->Text + "', '" + roomNo->Text + "', '" + dID->Text + "');";
+
+			sqlcmd->ExecuteNonQuery();
+			sqlconn->Close();
+			GetData();
+			RefreshDB();
+		}
+		catch (Exception^ e)
+		{
+			MessageBox::Show(e->Message, "Data Entry Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
+	}
+
+	//refresh button click
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		RefreshDB();
+	}
+
+	private: System::Void patientTable_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+		try {
+			patId->Text = patientTable->SelectedRows[0]->Cells[0]->Value->ToString();
+			patName->Text = patientTable->SelectedRows[0]->Cells[1]->Value->ToString();
+			patNum->Text = patientTable->SelectedRows[0]->Cells[2]->Value->ToString();
+			gender->Text = patientTable->SelectedRows[0]->Cells[3]->Value->ToString();
+			disease->Text = patientTable->SelectedRows[0]->Cells[4]->Value->ToString();
+			treatment->Text = patientTable->SelectedRows[0]->Cells[5]->Value->ToString();
+			roomNo->Text = patientTable->SelectedRows[0]->Cells[6]->Value->ToString();
+			dID->Text = patientTable->SelectedRows[0]->Cells[7]->Value->ToString();
+		}
+		catch (Exception^ e)
+		{
+			MessageBox::Show(e->Message, "Connection Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
+	}
+
+	private: System::Void dele_Click(System::Object^ sender, System::EventArgs^ e) {
+		System::Windows::Forms::DialogResult query;
+		try
+		{
+			sqlconn->ConnectionString = "datasource = localhost;"
+				"port = 3306; "
+				"username = root;"
+				"password = 7240paio6921;"
+				"database = hospitaldb";
+			sqlcmd->Connection = sqlconn;
+
+			query = MessageBox::Show("Do you want to delete the record?", "Query", MessageBoxButtons::YesNo, MessageBoxIcon::Information);
+
+			if (query == System::Windows::Forms::DialogResult::Yes)
+			{
+				String^ ID = patId->Text;
+				MySqlCommand^ sqlcmd = gcnew MySqlCommand("delete from patient where patientID = " + ID + "", sqlconn);
+				sqlconn->Open();
+				sqlrd = sqlcmd->ExecuteReader();
+				MessageBox::Show("Record Deleted!", "Successful", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				sqlconn->Close();
+			}
+		}
+		catch (Exception^ e)
+		{
+			MessageBox::Show(e->Message, "Delete Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
+		RefreshDB();
+	}
+
+	private: System::Void update_Click(System::Object^ sender, System::EventArgs^ e) {
+		try
+		{
+			sqlconn->ConnectionString = "datasource = localhost;"
+				"port = 3306; "
+				"username = root;"
+				"password = 7240paio6921;"
+				"database = hospitaldb";
+			sqlcmd->Connection = sqlconn;
+
+			String^ ID = patId->Text;
+			String^ Name =	patName->Text;
+			String^ Num = patNum->Text;
+			String^ dise = disease->Text;
+			String^ gend = gender->Text;
+			String^ treat = treatment->Text;
+			String^ rom = roomNo->Text;
+			String^ doc = dID->Text;
+
+			sqlcmd->CommandText = "update patient set patientID = '" + ID + "', fullName = '" + Name + "', phoneNo = '" + Num + "', gender = '" + gend + "', disease = '" + dise + "', treatment = '" + treat + "', roomNo = '" + rom + "', doctorID = '" + doc + "' where patientID = " + ID + "", sqlconn;
+
+			sqlconn->Open();
+			sqlrd = sqlcmd->ExecuteReader();
+			sqlconn->Close();
+			GetData();
+			RefreshDB();
+		}
+		catch (Exception^ e)
+		{
+			MessageBox::Show(e->Message, "Data Update Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
+	}
 };
 }
