@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="PatientInfo.cpp" />
+    <ClCompile Include="NurseInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainForm.h" />
@@ -12,5 +13,6 @@
     <ClInclude Include="RoomInfo.h" />
     <ClInclude Include="DoctorTable.h" />
     <ClInclude Include="PatientInfo.h" />
+    <ClInclude Include="NurseInfo.h" />
   </ItemGroup>
 </Project>

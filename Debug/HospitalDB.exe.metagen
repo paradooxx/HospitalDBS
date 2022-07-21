@@ -1,6 +1,7 @@
   HospitalDB.DoctorTable.resources - Embedded, ContainedInManifestFile, 
   HospitalDB.LoginForm.resources - Embedded, ContainedInManifestFile, 
   HospitalDB.MainForm.resources - Embedded, ContainedInManifestFile, 
+  HospitalDB.NurseInfo.resources - Embedded, ContainedInManifestFile, 
   HospitalDB.PatientInfo.resources - Embedded, ContainedInManifestFile, 
   HospitalDB.RoomInfo.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
@@ -259,3 +260,6 @@ Class HospitalDB.LoginForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
     Login login IsByValue : Public, InitOnly
+Class HospitalDB.NurseInfo: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

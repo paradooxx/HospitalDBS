@@ -4,6 +4,7 @@
 #include "DoctorTable.h"
 #include "Sql/SqlQueries.h"
 #include "PatientInfo.h"
+#include "NurseInfo.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -20,13 +21,15 @@ void Main(array<String^>^ args)
 	HospitalDB::RoomInfo RoomInfo;
 	HospitalDB::DoctorTable DoctorTable;
 	HospitalDB::PatientInfo PatientInfo;
+	HospitalDB::NurseInfo NurseInfo;
 
 	connect.ConnectDB();
 	connect.CreateTable();
 	//DoctorTable.ShowDialog();
-	PatientInfo.ShowDialog();
+	//PatientInfo.ShowDialog();
 	//MainForm.ShowDialog();
 	//LoginForm.ShowDialog();
 	//RoomInfo.ShowDialog();
+	NurseInfo.ShowDialog();
 	connect.CloseDB();
 }

@@ -22,3 +22,4 @@ D:\Projects\HospitalDBS\HospitalDB\Debug\HospitalDB.vcxproj.GenerateResource.cac
 D:\Projects\HospitalDBS\HospitalDB\Debug\HospitalDB.vcxproj.CopyComplete
 D:\Projects\HospitalDBS\HospitalDB\Debug\HospitalDB.DoctorTable.resources
 D:\Projects\HospitalDBS\HospitalDB\Debug\HospitalDB.PatientInfo.resources
+D:\Projects\HospitalDBS\HospitalDB\Debug\HospitalDB.NurseInfo.resources

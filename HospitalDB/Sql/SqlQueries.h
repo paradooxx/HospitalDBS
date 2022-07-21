@@ -69,6 +69,16 @@ public: System::Void CreateTable()
 			"primary key(patientID));";
 		sqlrd = sqlcmd->ExecuteReader();
 		sqlrd->Close();
+
+		sqlcmd->CommandText = "create table if not exists nurse("
+			"nurseID int(10),"
+			"nurseName varchar(30),"
+			"nursePhoneNum bigint,"
+			"roomNo int(10),"
+			"primary key(nurseID),"
+			"foreign key(roomNo) references room(roomNo) on delete cascade on update cascade);";
+		sqlrd = sqlcmd->ExecuteReader();
+		sqlrd->Close();
 	}
 	catch (Exception^ ex)
 	{
