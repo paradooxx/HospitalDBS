@@ -8,18 +8,25 @@ namespace HospitalDB {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace MySql::Data::MySqlClient;
 
 	/// <summary>
 	/// Summary for NurseInfo
 	/// </summary>
 	public ref class NurseInfo : public System::Windows::Forms::Form
 	{
+		MySqlConnection^ sqlconn = gcnew MySqlConnection();
+		MySqlCommand^ sqlcmd = gcnew MySqlCommand();
+		DataTable^ sqldt = gcnew DataTable();            
+		MySqlDataAdapter^ sqldta = gcnew MySqlDataAdapter();
+		MySqlDataReader^ sqlrd;
 	public:
 		NurseInfo(void)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
+			GetData();
 			//
 		}
 
@@ -45,15 +52,18 @@ namespace HospitalDB {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::ComboBox^ comboBox1;
-	private: System::Windows::Forms::Label^ roomN;
+	private: System::Windows::Forms::ComboBox^ roomN;
+
+	private: System::Windows::Forms::Label^ roomnumber;
+
 
 	private: System::Windows::Forms::Button^ addbutton;
 	private: System::Windows::Forms::Button^ exit;
 	private: System::Windows::Forms::Button^ refresh;
 	private: System::Windows::Forms::Button^ Del;
 	private: System::Windows::Forms::Button^ update;
-	private: System::Windows::Forms::DataGridView^ docTable;
+	private: System::Windows::Forms::DataGridView^ nurseTable;
+
 	protected:
 
 	private:
@@ -77,15 +87,15 @@ namespace HospitalDB {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
-			this->roomN = (gcnew System::Windows::Forms::Label());
+			this->roomN = (gcnew System::Windows::Forms::ComboBox());
+			this->roomnumber = (gcnew System::Windows::Forms::Label());
 			this->addbutton = (gcnew System::Windows::Forms::Button());
 			this->exit = (gcnew System::Windows::Forms::Button());
 			this->refresh = (gcnew System::Windows::Forms::Button());
 			this->Del = (gcnew System::Windows::Forms::Button());
 			this->update = (gcnew System::Windows::Forms::Button());
-			this->docTable = (gcnew System::Windows::Forms::DataGridView());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->docTable))->BeginInit();
+			this->nurseTable = (gcnew System::Windows::Forms::DataGridView());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->nurseTable))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label5
@@ -105,10 +115,12 @@ namespace HospitalDB {
 			this->nurseId->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->nurseId->FormattingEnabled = true;
-			this->nurseId->Items->AddRange(gcnew cli::array< System::Object^  >(21) {
-				L"9000", L"9001", L"9002", L"9003", L"9004", L"9005",
-					L"9006", L"9007", L"9008", L"9009", L"9010", L"9011", L"9012", L"9013", L"9014", L"9015", L"9016", L"9017", L"9018", L"9019",
-					L"9020"
+			this->nurseId->Items->AddRange(gcnew cli::array< System::Object^  >(51) {
+				L"15000", L"15001", L"15002", L"15003", L"15004",
+					L"15005", L"15006", L"15007", L"15008", L"15009", L"15010", L"15011", L"15012", L"15013", L"15014", L"15015", L"15016", L"15017",
+					L"15018", L"15019", L"15020", L"15021", L"15022", L"15023", L"15024", L"15025", L"15026", L"15027", L"15028", L"15029", L"15030",
+					L"15031", L"15032", L"15033", L"15034", L"15035", L"15036", L"15037", L"15038", L"15039", L"15040", L"15041", L"15042", L"15043",
+					L"15044", L"15045", L"15046", L"15047", L"15048", L"15049", L"15050"
 			});
 			this->nurseId->Location = System::Drawing::Point(25, 63);
 			this->nurseId->Name = L"nurseId";
@@ -163,38 +175,37 @@ namespace HospitalDB {
 			this->label1->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::Color::Transparent;
-			this->label1->Location = System::Drawing::Point(17, 33);
+			this->label1->Location = System::Drawing::Point(20, 33);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(99, 27);
 			this->label1->TabIndex = 37;
 			this->label1->Text = L"Nurse ID";
 			// 
-			// comboBox1
-			// 
-			this->comboBox1->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(21) {
-				L"9000", L"9001", L"9002", L"9003", L"9004", L"9005",
-					L"9006", L"9007", L"9008", L"9009", L"9010", L"9011", L"9012", L"9013", L"9014", L"9015", L"9016", L"9017", L"9018", L"9019",
-					L"9020"
-			});
-			this->comboBox1->Location = System::Drawing::Point(22, 321);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(165, 35);
-			this->comboBox1->TabIndex = 44;
-			// 
 			// roomN
 			// 
-			this->roomN->AutoSize = true;
 			this->roomN->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->roomN->ForeColor = System::Drawing::Color::Transparent;
-			this->roomN->Location = System::Drawing::Point(17, 291);
+			this->roomN->FormattingEnabled = true;
+			this->roomN->Items->AddRange(gcnew cli::array< System::Object^  >(15) {
+				L"101", L"102", L"103", L"104", L"105", L"201", L"202",
+					L"203", L"204", L"205", L"301", L"302", L"303", L"304", L"305"
+			});
+			this->roomN->Location = System::Drawing::Point(22, 321);
 			this->roomN->Name = L"roomN";
-			this->roomN->Size = System::Drawing::Size(162, 27);
-			this->roomN->TabIndex = 43;
-			this->roomN->Text = L"Room Number";
+			this->roomN->Size = System::Drawing::Size(165, 35);
+			this->roomN->TabIndex = 44;
+			// 
+			// roomnumber
+			// 
+			this->roomnumber->AutoSize = true;
+			this->roomnumber->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->roomnumber->ForeColor = System::Drawing::Color::Transparent;
+			this->roomnumber->Location = System::Drawing::Point(17, 291);
+			this->roomnumber->Name = L"roomnumber";
+			this->roomnumber->Size = System::Drawing::Size(162, 27);
+			this->roomnumber->TabIndex = 43;
+			this->roomnumber->Text = L"Room Number";
 			// 
 			// addbutton
 			// 
@@ -208,6 +219,7 @@ namespace HospitalDB {
 			this->addbutton->TabIndex = 49;
 			this->addbutton->Text = L"AddData";
 			this->addbutton->UseVisualStyleBackColor = true;
+			this->addbutton->Click += gcnew System::EventHandler(this, &NurseInfo::addbutton_Click);
 			// 
 			// exit
 			// 
@@ -262,17 +274,17 @@ namespace HospitalDB {
 			this->update->Text = L"Update";
 			this->update->UseVisualStyleBackColor = true;
 			// 
-			// docTable
+			// nurseTable
 			// 
-			this->docTable->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
-			this->docTable->BackgroundColor = System::Drawing::SystemColors::ActiveCaption;
-			this->docTable->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->docTable->Location = System::Drawing::Point(384, 44);
-			this->docTable->Name = L"docTable";
-			this->docTable->RowHeadersWidth = 51;
-			this->docTable->RowTemplate->Height = 24;
-			this->docTable->Size = System::Drawing::Size(861, 611);
-			this->docTable->TabIndex = 50;
+			this->nurseTable->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
+			this->nurseTable->BackgroundColor = System::Drawing::SystemColors::ActiveCaption;
+			this->nurseTable->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->nurseTable->Location = System::Drawing::Point(384, 44);
+			this->nurseTable->Name = L"nurseTable";
+			this->nurseTable->RowHeadersWidth = 51;
+			this->nurseTable->RowTemplate->Height = 24;
+			this->nurseTable->Size = System::Drawing::Size(861, 611);
+			this->nurseTable->TabIndex = 50;
 			// 
 			// NurseInfo
 			// 
@@ -280,14 +292,14 @@ namespace HospitalDB {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
 				static_cast<System::Int32>(static_cast<System::Byte>(113)));
 			this->ClientSize = System::Drawing::Size(1262, 673);
-			this->Controls->Add(this->docTable);
+			this->Controls->Add(this->nurseTable);
 			this->Controls->Add(this->addbutton);
 			this->Controls->Add(this->exit);
 			this->Controls->Add(this->refresh);
 			this->Controls->Add(this->Del);
 			this->Controls->Add(this->update);
-			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->roomN);
+			this->Controls->Add(this->roomnumber);
 			this->Controls->Add(this->nurseId);
 			this->Controls->Add(this->nurseNum);
 			this->Controls->Add(this->nurseName);
@@ -295,18 +307,94 @@ namespace HospitalDB {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->label5);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MaximizeBox = false;
 			this->Name = L"NurseInfo";
 			this->Text = L"NurseInfo";
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->docTable))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->nurseTable))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
+	private: System::Void GetData()
+	{
+		try
+		{
+			sqlconn->ConnectionString = "datasource = localhost;"
+				"port = 3306; "
+				"username = root;"
+				"password = 7240paio6921;"
+				"database = hospitaldb";
+			sqlconn->Open();
+			sqlcmd->Connection = sqlconn;
+			sqlcmd->CommandText = "select * from nurse;";
+			sqlrd = sqlcmd->ExecuteReader();
+			sqldt->Load(sqlrd);
+			sqlrd->Close();
+			sqlconn->Close();
+			nurseTable->DataSource = sqldt;
+		}
+		catch (Exception^ e)
+		{
+			MessageBox::Show(e->Message, "Connection Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
+	}
+	
+	private: System::Void RefreshDB()
+	{
+		try
+		{
+			sqlconn->ConnectionString = "datasource = localhost;"
+				"port = 3306; "
+				"username = root;"
+				"password = 7240paio6921;"
+				"database = hospitaldb";
+			sqlcmd->Connection = sqlconn;
+
+			MySqlDataAdapter^ sqlda = gcnew MySqlDataAdapter("select * from nurse", sqlconn);
+			DataTable^ datatb = gcnew DataTable();
+			sqlda->Fill(datatb);
+			nurseTable->DataSource = datatb;
+
+			nurseId->Text = "";
+			nurseName->Text = "";
+			nurseNum->Text = "";
+			roomN->Text = "";
+		}
+		catch (Exception^ e)
+		{
+			MessageBox::Show(e->Message, "Data Entry Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
+	}
+
 	private: System::Void exit_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
+	}
+
+	private: System::Void addbutton_Click(System::Object^ sender, System::EventArgs^ e) {
+		sqlconn->ConnectionString = "datasource = localhost;"
+			"port = 3306; "
+			"username = root;"
+			"password = 7240paio6921;"
+			"database = hospitaldb";
+		sqlconn->Open();
+		sqlcmd->Connection = sqlconn;
+		try
+		{
+			sqlcmd->CommandText = "insert into nurse values "
+				"('" + nurseId->Text + "', '" + nurseName->Text + "', '" + nurseNum->Text + "', '" + roomN->Text + "');";
+
+			sqlcmd->ExecuteNonQuery();
+			sqlconn->Close();
+			GetData();
+			RefreshDB();
+		}
+		catch (Exception^ e)
+		{
+			MessageBox::Show(e->Message, "Data Entry Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
 	}
 };
 }

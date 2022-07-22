@@ -1,5 +1,3 @@
 ﻿  MainForm.cpp
-  NurseInfo.cpp
-  Generating Code...
   MainForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   HospitalDB.vcxproj -> D:\Projects\HospitalDBS\Debug\HospitalDB.exe
