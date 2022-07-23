@@ -34,27 +34,25 @@ public: System::Void ConnectDB()
 public: System::Void CreateTable()
 {
 	try {
-		//sqlcmd->CommandText = "CREATE TABLE if not exists Random2 (Id INT(10), name VARCHAR(50));";
-		//sqlrd = sqlcmd->ExecuteReader();
-		//sqldt->Load(sqlrd);      //to read table columns
-		//sqlrd->Close();
+		//table:room
 		sqlcmd->CommandText = "create table if not exists room("
 			"roomNo int(10),"
 			"roomtype varchar(10),"
 			"capacity int(10),"
 			"primary key(roomNo));";
-
 		sqlrd = sqlcmd->ExecuteReader();
 		sqlrd->Close();
+
+		//table:doctor
 		sqlcmd->CommandText = "create table if not exists doctor("
 			"doctorID int(10),"
 			"doctorName varchar(40),"
 			"doctorPhoneNum bigint(12),"
 			"primary key(doctorID));";
-
 		sqlrd = sqlcmd->ExecuteReader();
 		sqlrd->Close();
 
+		//table:patient
 		sqlcmd->CommandText = "create table if not exists patient("
 			"patientID int(10),"
 			"fullname varchar(50),"
@@ -70,12 +68,23 @@ public: System::Void CreateTable()
 		sqlrd = sqlcmd->ExecuteReader();
 		sqlrd->Close();
 
+		//table:nurse
 		sqlcmd->CommandText = "create table if not exists nurse("
 			"nurseID int(10),"
 			"nurseName varchar(30),"
 			"nursePhoneNum bigint,"
 			"roomNo int(10),"
 			"primary key(nurseID),"
+			"foreign key(roomNo) references room(roomNo) on delete cascade on update cascade);";
+		sqlrd = sqlcmd->ExecuteReader();
+		sqlrd->Close();
+
+		//table:wardboy
+		sqlcmd->CommandText = "create table if not exists wardboy("
+			"wardboyID int(10),"
+			"wardboyName varchar(30),"
+			"roomNo int(10),"
+			"primary key(wardboyID),"
 			"foreign key(roomNo) references room(roomNo) on delete cascade on update cascade);";
 		sqlrd = sqlcmd->ExecuteReader();
 		sqlrd->Close();

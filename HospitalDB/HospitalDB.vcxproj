@@ -128,8 +128,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainForm.cpp" />
-    <ClCompile Include="NurseInfo.cpp" />
-    <ClCompile Include="PatientInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DoctorTable.h">
@@ -152,6 +150,9 @@
     </ClInclude>
     <ClInclude Include="Sql\LoginQueries.h" />
     <ClInclude Include="Sql\SqlQueries.h" />
+    <ClInclude Include="wardboy.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DoctorTable.resx">
@@ -171,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RoomInfo.resx">
       <DependentUpon>RoomInfo.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wardboy.resx">
+      <DependentUpon>wardboy.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

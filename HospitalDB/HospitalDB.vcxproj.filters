@@ -2,8 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="MainForm.cpp" />
-    <ClCompile Include="PatientInfo.cpp" />
-    <ClCompile Include="NurseInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainForm.h" />
@@ -14,5 +12,6 @@
     <ClInclude Include="DoctorTable.h" />
     <ClInclude Include="PatientInfo.h" />
     <ClInclude Include="NurseInfo.h" />
+    <ClInclude Include="wardboy.h" />
   </ItemGroup>
 </Project>

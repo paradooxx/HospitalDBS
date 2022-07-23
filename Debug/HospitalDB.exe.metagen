@@ -4,6 +4,7 @@
   HospitalDB.NurseInfo.resources - Embedded, ContainedInManifestFile, 
   HospitalDB.PatientInfo.resources - Embedded, ContainedInManifestFile, 
   HospitalDB.RoomInfo.resources - Embedded, ContainedInManifestFile, 
+  HospitalDB.wardboy.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly HospitalDB, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
 	hash=SHA1, flags=PublicKey
@@ -245,6 +246,9 @@ Class HospitalDB.PatientInfo: AutoLayout, AnsiClass, Class, Public, BeforeFieldI
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class HospitalDB.NurseInfo: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class HospitalDB.wardboy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class HospitalDB.MainForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
