@@ -247,6 +247,7 @@ namespace HospitalDB {
 			this->refresh->TabIndex = 47;
 			this->refresh->Text = L"Refresh";
 			this->refresh->UseVisualStyleBackColor = true;
+			this->refresh->Click += gcnew System::EventHandler(this, &NurseInfo::refresh_Click);
 			// 
 			// Del
 			// 
@@ -260,6 +261,7 @@ namespace HospitalDB {
 			this->Del->TabIndex = 46;
 			this->Del->Text = L"Delete";
 			this->Del->UseVisualStyleBackColor = true;
+			this->Del->Click += gcnew System::EventHandler(this, &NurseInfo::Del_Click);
 			// 
 			// update
 			// 
@@ -273,6 +275,7 @@ namespace HospitalDB {
 			this->update->TabIndex = 45;
 			this->update->Text = L"Update";
 			this->update->UseVisualStyleBackColor = true;
+			this->update->Click += gcnew System::EventHandler(this, &NurseInfo::update_Click);
 			// 
 			// nurseTable
 			// 
@@ -285,6 +288,7 @@ namespace HospitalDB {
 			this->nurseTable->RowTemplate->Height = 24;
 			this->nurseTable->Size = System::Drawing::Size(861, 611);
 			this->nurseTable->TabIndex = 50;
+			this->nurseTable->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &NurseInfo::nurseTable_CellClick);
 			// 
 			// NurseInfo
 			// 
@@ -395,6 +399,82 @@ namespace HospitalDB {
 		{
 			MessageBox::Show(e->Message, "Data Entry Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		}
+	}
+
+	private: System::Void update_Click(System::Object^ sender, System::EventArgs^ e) {
+		try
+		{
+			sqlconn->ConnectionString = "datasource = localhost;"
+				"port = 3306; "
+				"username = root;"
+				"password = 7240paio6921;"
+				"database = hospitaldb";
+			sqlcmd->Connection = sqlconn;
+
+			String^ ID = nurseId->Text;
+			String^ Name = nurseName->Text;
+			String^ Num = nurseNum->Text;
+			String^ rID = roomN->Text;
+
+			sqlcmd->CommandText = "update nurse set nurseID = '" + ID + "', nurseName = '" + Name + "', nursePhoneNum = '" + Num + "', roomNo = '" + rID + "' where nurseID = " + ID + "", sqlconn;
+
+			sqlconn->Open();
+			sqlrd = sqlcmd->ExecuteReader();
+			sqlconn->Close();
+			GetData();
+			RefreshDB();
+		}
+		catch (Exception^ e)
+		{
+			MessageBox::Show(e->Message, "Data Update Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
+	}
+
+	private: System::Void nurseTable_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+		try {
+			nurseId->Text = nurseTable->SelectedRows[0]->Cells[0]->Value->ToString();
+			nurseName->Text = nurseTable->SelectedRows[0]->Cells[1]->Value->ToString();
+			nurseNum->Text = nurseTable->SelectedRows[0]->Cells[2]->Value->ToString();
+			roomN->Text = nurseTable->SelectedRows[0]->Cells[3]->Value->ToString();
+		}
+		catch (Exception^ e)
+		{
+			MessageBox::Show(e->Message, "Connection Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
+	}
+
+	private: System::Void Del_Click(System::Object^ sender, System::EventArgs^ e) {
+		System::Windows::Forms::DialogResult query;
+		try
+		{
+			sqlconn->ConnectionString = "datasource = localhost;"
+				"port = 3306; "
+				"username = root;"
+				"password = 7240paio6921;"
+				"database = hospitaldb";
+			sqlcmd->Connection = sqlconn;
+
+			query = MessageBox::Show("Do you want to delete the record?", "Query", MessageBoxButtons::YesNo, MessageBoxIcon::Information);
+
+			if (query == System::Windows::Forms::DialogResult::Yes)
+			{
+				String^ ID = nurseId->Text;
+				MySqlCommand^ sqlcmd = gcnew MySqlCommand("delete from nurse where nurseID = " + ID + "", sqlconn);
+				sqlconn->Open();
+				sqlrd = sqlcmd->ExecuteReader();
+				MessageBox::Show("Record Deleted!", "Successful", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				sqlconn->Close();
+			}
+		}
+		catch (Exception^ e)
+		{
+			MessageBox::Show(e->Message, "Delete Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
+		RefreshDB();
+	}
+
+	private: System::Void refresh_Click(System::Object^ sender, System::EventArgs^ e) {
+		RefreshDB();
 	}
 };
 }
