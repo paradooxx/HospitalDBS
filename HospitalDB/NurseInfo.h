@@ -431,7 +431,8 @@ namespace HospitalDB {
 	}
 
 	private: System::Void nurseTable_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-		try {
+		try 
+		{
 			nurseId->Text = nurseTable->SelectedRows[0]->Cells[0]->Value->ToString();
 			nurseName->Text = nurseTable->SelectedRows[0]->Cells[1]->Value->ToString();
 			nurseNum->Text = nurseTable->SelectedRows[0]->Cells[2]->Value->ToString();

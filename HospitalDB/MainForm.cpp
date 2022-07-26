@@ -30,9 +30,9 @@ void Main(array<String^>^ args)
 	//DoctorTable.ShowDialog();
 	//PatientInfo.ShowDialog();
 	//MainForm.ShowDialog();
-	//LoginForm.ShowDialog();
+	LoginForm.ShowDialog();
 	//RoomInfo.ShowDialog();
-	wardboy.ShowDialog();
+	//wardboy.ShowDialog();
 	//NurseInfo.ShowDialog();
 	connect.CloseDB();
 }
