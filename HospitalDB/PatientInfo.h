@@ -19,7 +19,10 @@ namespace HospitalDB {
 		MySqlCommand^ sqlcmd = gcnew MySqlCommand();
 		DataTable^ sqldt = gcnew DataTable();            //for data from table to GUI,    requires namespace System::Data;
 		MySqlDataAdapter^ sqldta = gcnew MySqlDataAdapter();
-		MySqlDataReader^ sqlrd;
+	private: System::Windows::Forms::Label^ label10;
+	private: System::Windows::Forms::DateTimePicker^ admitted;
+
+		   MySqlDataReader^ sqlrd;
 	public:
 		PatientInfo(void)
 		{
@@ -125,6 +128,8 @@ namespace HospitalDB {
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->patId = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->admitted = (gcnew System::Windows::Forms::DateTimePicker());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->patientTable))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -132,7 +137,7 @@ namespace HospitalDB {
 			// 
 			this->patNum->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->patNum->Location = System::Drawing::Point(32, 216);
+			this->patNum->Location = System::Drawing::Point(32, 199);
 			this->patNum->Name = L"patNum";
 			this->patNum->Size = System::Drawing::Size(165, 32);
 			this->patNum->TabIndex = 41;
@@ -141,7 +146,7 @@ namespace HospitalDB {
 			// 
 			this->patName->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->patName->Location = System::Drawing::Point(32, 130);
+			this->patName->Location = System::Drawing::Point(32, 123);
 			this->patName->Name = L"patName";
 			this->patName->Size = System::Drawing::Size(165, 32);
 			this->patName->TabIndex = 40;
@@ -152,7 +157,7 @@ namespace HospitalDB {
 			this->label3->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label3->ForeColor = System::Drawing::Color::Transparent;
-			this->label3->Location = System::Drawing::Point(27, 191);
+			this->label3->Location = System::Drawing::Point(27, 174);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(168, 27);
 			this->label3->TabIndex = 39;
@@ -164,7 +169,7 @@ namespace HospitalDB {
 			this->label2->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::Color::Transparent;
-			this->label2->Location = System::Drawing::Point(27, 105);
+			this->label2->Location = System::Drawing::Point(27, 98);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(114, 27);
 			this->label2->TabIndex = 38;
@@ -188,7 +193,7 @@ namespace HospitalDB {
 				static_cast<System::Byte>(0)));
 			this->gender->FormattingEnabled = true;
 			this->gender->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Male", L"Female", L"Other" });
-			this->gender->Location = System::Drawing::Point(32, 294);
+			this->gender->Location = System::Drawing::Point(32, 271);
 			this->gender->Name = L"gender";
 			this->gender->Size = System::Drawing::Size(165, 35);
 			this->gender->TabIndex = 48;
@@ -199,7 +204,7 @@ namespace HospitalDB {
 			this->label6->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label6->ForeColor = System::Drawing::Color::Transparent;
-			this->label6->Location = System::Drawing::Point(30, 268);
+			this->label6->Location = System::Drawing::Point(30, 241);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(87, 27);
 			this->label6->TabIndex = 43;
@@ -241,7 +246,7 @@ namespace HospitalDB {
 				L"Treatment A", L"Treatment B", L"Treatment C",
 					L"Treatment D", L"Treatment E"
 			});
-			this->treatment->Location = System::Drawing::Point(32, 459);
+			this->treatment->Location = System::Drawing::Point(32, 477);
 			this->treatment->Name = L"treatment";
 			this->treatment->Size = System::Drawing::Size(165, 35);
 			this->treatment->TabIndex = 54;
@@ -250,7 +255,7 @@ namespace HospitalDB {
 			// 
 			this->disease->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->disease->Location = System::Drawing::Point(32, 377);
+			this->disease->Location = System::Drawing::Point(32, 408);
 			this->disease->Name = L"disease";
 			this->disease->Size = System::Drawing::Size(165, 32);
 			this->disease->TabIndex = 52;
@@ -261,7 +266,7 @@ namespace HospitalDB {
 			this->label5->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label5->ForeColor = System::Drawing::Color::Transparent;
-			this->label5->Location = System::Drawing::Point(27, 519);
+			this->label5->Location = System::Drawing::Point(27, 525);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(162, 27);
 			this->label5->TabIndex = 51;
@@ -273,7 +278,7 @@ namespace HospitalDB {
 			this->label7->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label7->ForeColor = System::Drawing::Color::Transparent;
-			this->label7->Location = System::Drawing::Point(27, 352);
+			this->label7->Location = System::Drawing::Point(27, 383);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(90, 27);
 			this->label7->TabIndex = 50;
@@ -285,7 +290,7 @@ namespace HospitalDB {
 			this->label8->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label8->ForeColor = System::Drawing::Color::Transparent;
-			this->label8->Location = System::Drawing::Point(27, 433);
+			this->label8->Location = System::Drawing::Point(27, 451);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(118, 27);
 			this->label8->TabIndex = 49;
@@ -300,7 +305,7 @@ namespace HospitalDB {
 				L"101", L"102", L"103", L"104", L"105", L"201", L"202",
 					L"203", L"204", L"205", L"301", L"302", L"303", L"304", L"305"
 			});
-			this->roomNo->Location = System::Drawing::Point(32, 545);
+			this->roomNo->Location = System::Drawing::Point(32, 551);
 			this->roomNo->Name = L"roomNo";
 			this->roomNo->Size = System::Drawing::Size(165, 35);
 			this->roomNo->TabIndex = 57;
@@ -322,11 +327,11 @@ namespace HospitalDB {
 			this->patientTable->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->patientTable->BackgroundColor = System::Drawing::SystemColors::ActiveCaption;
 			this->patientTable->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->patientTable->Location = System::Drawing::Point(235, 46);
+			this->patientTable->Location = System::Drawing::Point(279, 46);
 			this->patientTable->Name = L"patientTable";
 			this->patientTable->RowHeadersWidth = 51;
 			this->patientTable->RowTemplate->Height = 24;
-			this->patientTable->Size = System::Drawing::Size(1010, 544);
+			this->patientTable->Size = System::Drawing::Size(964, 544);
 			this->patientTable->TabIndex = 59;
 			this->patientTable->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &PatientInfo::patientTable_CellClick);
 			// 
@@ -336,7 +341,7 @@ namespace HospitalDB {
 				static_cast<System::Byte>(0)));
 			this->addbutton->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
 				static_cast<System::Int32>(static_cast<System::Byte>(113)));
-			this->addbutton->Location = System::Drawing::Point(235, 618);
+			this->addbutton->Location = System::Drawing::Point(279, 618);
 			this->addbutton->Name = L"addbutton";
 			this->addbutton->Size = System::Drawing::Size(165, 38);
 			this->addbutton->TabIndex = 60;
@@ -350,7 +355,7 @@ namespace HospitalDB {
 				static_cast<System::Byte>(0)));
 			this->update->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
 				static_cast<System::Int32>(static_cast<System::Byte>(113)));
-			this->update->Location = System::Drawing::Point(450, 618);
+			this->update->Location = System::Drawing::Point(478, 618);
 			this->update->Name = L"update";
 			this->update->Size = System::Drawing::Size(165, 38);
 			this->update->TabIndex = 61;
@@ -364,7 +369,7 @@ namespace HospitalDB {
 				static_cast<System::Byte>(0)));
 			this->dele->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
 				static_cast<System::Int32>(static_cast<System::Byte>(113)));
-			this->dele->Location = System::Drawing::Point(660, 618);
+			this->dele->Location = System::Drawing::Point(681, 618);
 			this->dele->Name = L"dele";
 			this->dele->Size = System::Drawing::Size(165, 38);
 			this->dele->TabIndex = 62;
@@ -378,7 +383,7 @@ namespace HospitalDB {
 				static_cast<System::Byte>(0)));
 			this->button3->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
 				static_cast<System::Int32>(static_cast<System::Byte>(113)));
-			this->button3->Location = System::Drawing::Point(872, 618);
+			this->button3->Location = System::Drawing::Point(884, 618);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(165, 38);
 			this->button3->TabIndex = 63;
@@ -392,7 +397,7 @@ namespace HospitalDB {
 				static_cast<System::Byte>(0)));
 			this->button4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
 				static_cast<System::Int32>(static_cast<System::Byte>(113)));
-			this->button4->Location = System::Drawing::Point(1080, 618);
+			this->button4->Location = System::Drawing::Point(1078, 618);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(165, 38);
 			this->button4->TabIndex = 64;
@@ -409,12 +414,40 @@ namespace HospitalDB {
 			this->patId->Size = System::Drawing::Size(165, 32);
 			this->patId->TabIndex = 65;
 			// 
+			// label10
+			// 
+			this->label10->AutoSize = true;
+			this->label10->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label10->ForeColor = System::Drawing::Color::Transparent;
+			this->label10->Location = System::Drawing::Point(30, 315);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(159, 27);
+			this->label10->TabIndex = 66;
+			this->label10->Text = L"Admitted date";
+			// 
+			// admitted
+			// 
+			this->admitted->CalendarFont = (gcnew System::Drawing::Font(L"Montserrat", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->admitted->CustomFormat = L"yyyy-MM-dd";
+			this->admitted->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->admitted->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
+			this->admitted->Location = System::Drawing::Point(32, 345);
+			this->admitted->Name = L"admitted";
+			this->admitted->Size = System::Drawing::Size(165, 32);
+			this->admitted->TabIndex = 67;
+			this->admitted->TabStop = false;
+			// 
 			// PatientInfo
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
 				static_cast<System::Int32>(static_cast<System::Byte>(113)));
 			this->ClientSize = System::Drawing::Size(1262, 673);
+			this->Controls->Add(this->admitted);
+			this->Controls->Add(this->label10);
 			this->Controls->Add(this->patId);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
@@ -497,6 +530,7 @@ namespace HospitalDB {
 			treatment->Text = "";
 			roomNo->Text = "";
 			dID->Text = "";
+			admitted->Text = "";
 		}
 		catch (Exception^ e)
 		{
@@ -520,7 +554,7 @@ namespace HospitalDB {
 		try
 		{
 			sqlcmd->CommandText = "insert into patient values "
-				"('" + patId->Text + "', '" + patName->Text + "', '" + patNum->Text + "', '" + gender->Text + "', '" + disease->Text + "', '" + treatment->Text + "', '" + roomNo->Text + "', '" + dID->Text + "');";
+				"('" + patId->Text + "', '" + patName->Text + "', '" + patNum->Text + "', '" + gender->Text + "', '" + disease->Text + "', '" + treatment->Text + "', '" + roomNo->Text + "', '" + dID->Text + "', '" + admitted->Text + "');";
 
 			sqlcmd->ExecuteNonQuery();
 			sqlconn->Close();
@@ -603,8 +637,9 @@ namespace HospitalDB {
 			String^ treat = treatment->Text;
 			String^ rom = roomNo->Text;
 			String^ doc = dID->Text;
+			String^ date = admitted->Text;
 
-			sqlcmd->CommandText = "update patient set patientID = '" + ID + "', fullName = '" + Name + "', phoneNo = '" + Num + "', gender = '" + gend + "', disease = '" + dise + "', treatment = '" + treat + "', roomNo = '" + rom + "', doctorID = '" + doc + "' where patientID = " + ID + "", sqlconn;
+			sqlcmd->CommandText = "update patient set patientID = '" + ID + "', fullName = '" + Name + "', phoneNo = '" + Num + "', gender = '" + gend + "', disease = '" + dise + "', treatment = '" + treat + "', roomNo = '" + rom + "', doctorID = '" + doc + "', admittedDate = '" + date + "' where patientID = " + ID + "", sqlconn;
 
 			sqlconn->Open();
 			sqlrd = sqlcmd->ExecuteReader();
