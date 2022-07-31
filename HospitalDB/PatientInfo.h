@@ -75,7 +75,7 @@ namespace HospitalDB {
 	private: System::Windows::Forms::ComboBox^ roomNo;
 
 	private: System::Windows::Forms::Label^ label9;
-	private: System::Windows::Forms::DataGridView^ patientTable;
+	public: System::Windows::Forms::DataGridView^ patientTable;
 
 	private: System::Windows::Forms::Button^ addbutton;
 	private: System::Windows::Forms::Button^ update;
@@ -434,7 +434,7 @@ namespace HospitalDB {
 			this->admitted->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->admitted->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
-			this->admitted->Location = System::Drawing::Point(32, 345);
+			this->admitted->Location = System::Drawing::Point(33, 345);
 			this->admitted->Name = L"admitted";
 			this->admitted->Size = System::Drawing::Size(165, 32);
 			this->admitted->TabIndex = 67;

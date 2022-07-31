@@ -127,9 +127,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bill.cpp" />
     <ClCompile Include="MainForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bill.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="DoctorTable.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -155,6 +159,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Bill.resx">
+      <DependentUpon>Bill.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DoctorTable.resx">
       <DependentUpon>DoctorTable.h</DependentUpon>
     </EmbeddedResource>

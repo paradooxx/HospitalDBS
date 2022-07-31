@@ -62,6 +62,7 @@ public: System::Void CreateTable()
 			"treatment varchar(10),"
 			"roomNo int(10),"
 			"doctorID int(10),"
+			"admittedDate date,"
 			"foreign key(doctorID) references doctor(doctorId) on delete cascade on update cascade,"
 			"foreign key(roomNo) references room(roomNo) on delete cascade on update cascade,"
 			"primary key(patientID));";

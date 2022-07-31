@@ -24,3 +24,4 @@ D:\Projects\HospitalDBS\HospitalDB\Debug\HospitalDB.DoctorTable.resources
 D:\Projects\HospitalDBS\HospitalDB\Debug\HospitalDB.PatientInfo.resources
 D:\Projects\HospitalDBS\HospitalDB\Debug\HospitalDB.NurseInfo.resources
 D:\Projects\HospitalDBS\HospitalDB\Debug\HospitalDB.wardboy.resources
+D:\Projects\HospitalDBS\HospitalDB\Debug\HospitalDB.Bill.resources
