@@ -54,6 +54,7 @@ namespace HospitalDB {
 	private: System::Windows::Forms::MaskedTextBox^ totBill;
 
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ reff;
 	private:
 
 	private:
@@ -114,6 +115,7 @@ namespace HospitalDB {
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->totBill = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->reff = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->billTable))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -354,12 +356,25 @@ namespace HospitalDB {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &Bill::button1_Click);
 			// 
+			// reff
+			// 
+			this->reff->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->reff->Location = System::Drawing::Point(286, 539);
+			this->reff->Name = L"reff";
+			this->reff->Size = System::Drawing::Size(166, 36);
+			this->reff->TabIndex = 88;
+			this->reff->Text = L"Refresh";
+			this->reff->UseVisualStyleBackColor = true;
+			this->reff->Click += gcnew System::EventHandler(this, &Bill::reff_Click);
+			// 
 			// Bill
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
 				static_cast<System::Int32>(static_cast<System::Byte>(113)));
 			this->ClientSize = System::Drawing::Size(1262, 673);
+			this->Controls->Add(this->reff);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->totBill);
 			this->Controls->Add(this->label9);
@@ -418,17 +433,58 @@ namespace HospitalDB {
 #pragma endregion
 	private: System::Void search_Click(System::Object^ sender, System::EventArgs^ e) {
 		try {
-			DataView^ dv = sqldt->DefaultView;
-			//dv->RowFilter = String::Format("patientID like '%{1}%'", billName->Text->Trim());
-			//dv->RowFilter = "patientID like '%" + billId->Text->Trim() + "%'";
-			dv->RowFilter = String::Format("CONVERT({0}, System::String) like '%{1}%'", billTable->Text->Trim(), billId->Text->Trim());
-			billTable->DataSource = dv->ToTable();
+			sqlconn->ConnectionString = "datasource = localhost;"
+				"port = 3306; "
+				"username = root;"
+				"password = 7240paio6921;"
+				"database = hospitaldb";
+			sqlconn->Open();
+			//System::String^ query = "select * from patient where patientID = " + int->Parse(billId->Text);
+			sqlcmd->CommandText = "select * from patient where patientID = " + Convert::ToInt32(billId->Text);
+			sqlrd = sqlcmd->ExecuteReader();
+			if (sqlrd->Read())
+			{
+				billName->Text = sqlrd->GetString("fullname");
+				disease->Text = sqlrd->GetString("disease");
+				treatment->Text = sqlrd->GetString("treatment");
+				roomNo->Text = sqlrd->GetString("roomNo");
+				admitted->Text = sqlrd->GetString("admittedDate");
+			}
+			else
+			{
+				billName->Text = "";
+				disease->Text = "";
+				treatment->Text = "";
+				roomNo->Text = "";
+				admitted->Text = "";
+				totBill->Text = "";
+				MessageBox::Show("No data for this Id value!");
+			}
 		}
 		catch (Exception^ e)
 		{
 			MessageBox::Show(e->Message, "Connection Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		}
+		sqlconn->Close();
 	}
+
+	private: System::Void RefreshDB()
+	{
+		try {
+			billId->Text = "";
+			billName->Text = "";
+			disease->Text = "";
+			treatment->Text = "";
+			roomNo->Text = "";
+			admitted->Text = "";
+			totBill->Text = "";
+		}
+		catch (Exception^ e)
+		{
+			MessageBox::Show(e->Message, "Refresh Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
+	}
+
 	private: System::Void billTable_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 		try {
 			billId->Text = billTable->SelectedRows[0]->Cells[0]->Value->ToString();
@@ -477,5 +533,9 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	}
 	sqlconn->Close();
 }
+
+	private: System::Void reff_Click(System::Object^ sender, System::EventArgs^ e) {
+		RefreshDB();
+	}
 };
 }

@@ -31,9 +31,9 @@ void Main(array<String^>^ args)
 	connect.CreateTable();
 	//DoctorTable.ShowDialog();
 	//PatientInfo.ShowDialog();
-	//bill.ShowDialog();
+	bill.ShowDialog();
 	//MainForm.ShowDialog();
-	LoginForm.ShowDialog();
+	//LoginForm.ShowDialog();
 	//RoomInfo.ShowDialog();
 	//wardboy.ShowDialog();
 	//NurseInfo.ShowDialog();
