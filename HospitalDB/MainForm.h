@@ -7,6 +7,8 @@
 #include "PatientInfo.h"
 #include "NurseInfo.h"
 #include "wardboy.h"
+#include "Bill.h"
+
 
 //Connect connect;
 namespace HospitalDB {
@@ -59,6 +61,7 @@ namespace HospitalDB {
 	private: System::Windows::Forms::Button^ wardboy;
 
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
+	private: System::Windows::Forms::Button^ billbutton;
 
 	protected:
 
@@ -83,6 +86,7 @@ namespace HospitalDB {
 			this->nurse = (gcnew System::Windows::Forms::Button());
 			this->wardboy = (gcnew System::Windows::Forms::Button());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->billbutton = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			this->SuspendLayout();
@@ -100,7 +104,7 @@ namespace HospitalDB {
 			// 
 			this->room->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->room->Location = System::Drawing::Point(504, 169);
+			this->room->Location = System::Drawing::Point(504, 124);
 			this->room->Name = L"room";
 			this->room->Size = System::Drawing::Size(272, 55);
 			this->room->TabIndex = 1;
@@ -112,7 +116,7 @@ namespace HospitalDB {
 			// 
 			this->doctor->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->doctor->Location = System::Drawing::Point(504, 269);
+			this->doctor->Location = System::Drawing::Point(504, 224);
 			this->doctor->Name = L"doctor";
 			this->doctor->Size = System::Drawing::Size(272, 55);
 			this->doctor->TabIndex = 2;
@@ -124,7 +128,7 @@ namespace HospitalDB {
 			// 
 			this->patient->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->patient->Location = System::Drawing::Point(504, 369);
+			this->patient->Location = System::Drawing::Point(504, 324);
 			this->patient->Name = L"patient";
 			this->patient->Size = System::Drawing::Size(272, 55);
 			this->patient->TabIndex = 3;
@@ -136,7 +140,7 @@ namespace HospitalDB {
 			// 
 			this->nurse->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->nurse->Location = System::Drawing::Point(504, 469);
+			this->nurse->Location = System::Drawing::Point(504, 424);
 			this->nurse->Name = L"nurse";
 			this->nurse->Size = System::Drawing::Size(272, 55);
 			this->nurse->TabIndex = 4;
@@ -148,7 +152,7 @@ namespace HospitalDB {
 			// 
 			this->wardboy->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->wardboy->Location = System::Drawing::Point(504, 569);
+			this->wardboy->Location = System::Drawing::Point(504, 524);
 			this->wardboy->Name = L"wardboy";
 			this->wardboy->Size = System::Drawing::Size(272, 55);
 			this->wardboy->TabIndex = 5;
@@ -165,10 +169,23 @@ namespace HospitalDB {
 			this->pictureBox2->TabIndex = 6;
 			this->pictureBox2->TabStop = false;
 			// 
+			// billbutton
+			// 
+			this->billbutton->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->billbutton->Location = System::Drawing::Point(504, 624);
+			this->billbutton->Name = L"billbutton";
+			this->billbutton->Size = System::Drawing::Size(272, 55);
+			this->billbutton->TabIndex = 7;
+			this->billbutton->Text = L"Bill Calculation";
+			this->billbutton->UseVisualStyleBackColor = true;
+			this->billbutton->Click += gcnew System::EventHandler(this, &MainForm::billbutton_Click);
+			// 
 			// MainForm
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->ClientSize = System::Drawing::Size(1262, 753);
+			this->Controls->Add(this->billbutton);
 			this->Controls->Add(this->wardboy);
 			this->Controls->Add(this->nurse);
 			this->Controls->Add(this->patient);
@@ -216,6 +233,12 @@ private: System::Void wardboy_Click(System::Object^ sender, System::EventArgs^ e
 	this->Hide();
 	HospitalDB::wardboy wardboy;
 	wardboy.ShowDialog();
+	this->Show();
+}
+private: System::Void billbutton_Click(System::Object^ sender, System::EventArgs^ e){
+	this->Hide();
+	HospitalDB::Bill bill;
+	bill.ShowDialog();
 	this->Show();
 }
 };

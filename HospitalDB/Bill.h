@@ -37,21 +37,26 @@ namespace HospitalDB {
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::Label^ label8;
-	private: System::Windows::Forms::ComboBox^ billgender;
 
-	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::MaskedTextBox^ billPhoneNum;
 
-	private: System::Windows::Forms::Label^ label9;
+
 	private: System::Windows::Forms::Button^ search;
 	private: System::Windows::Forms::MaskedTextBox^ billId;
 	public: System::Windows::Forms::DataGridView^ billTable;
+	private: System::Windows::Forms::DateTimePicker^ discharge;
+	public:
+
+	public:
+
+	public:
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Label^ label9;
+	private: System::Windows::Forms::MaskedTextBox^ totBill;
+
+	private: System::Windows::Forms::Button^ button1;
 	private:
 
 	private:
-
-
-
 		   MySqlDataReader^ sqlrd;
 	public:
 		Bill(void)
@@ -101,13 +106,14 @@ namespace HospitalDB {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->billgender = (gcnew System::Windows::Forms::ComboBox());
-			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->billPhoneNum = (gcnew System::Windows::Forms::MaskedTextBox());
-			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->search = (gcnew System::Windows::Forms::Button());
 			this->billId = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->billTable = (gcnew System::Windows::Forms::DataGridView());
+			this->discharge = (gcnew System::Windows::Forms::DateTimePicker());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->totBill = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->billTable))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -115,7 +121,7 @@ namespace HospitalDB {
 			// 
 			this->billName->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->billName->Location = System::Drawing::Point(26, 208);
+			this->billName->Location = System::Drawing::Point(26, 180);
 			this->billName->Name = L"billName";
 			this->billName->Size = System::Drawing::Size(165, 32);
 			this->billName->TabIndex = 60;
@@ -126,7 +132,7 @@ namespace HospitalDB {
 			this->label2->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::Color::Transparent;
-			this->label2->Location = System::Drawing::Point(21, 178);
+			this->label2->Location = System::Drawing::Point(21, 150);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(151, 27);
 			this->label2->TabIndex = 59;
@@ -164,7 +170,7 @@ namespace HospitalDB {
 			this->admitted->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->admitted->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
-			this->admitted->Location = System::Drawing::Point(27, 416);
+			this->admitted->Location = System::Drawing::Point(27, 424);
 			this->admitted->Name = L"admitted";
 			this->admitted->Size = System::Drawing::Size(165, 32);
 			this->admitted->TabIndex = 79;
@@ -176,7 +182,7 @@ namespace HospitalDB {
 			this->label10->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label10->ForeColor = System::Drawing::Color::Transparent;
-			this->label10->Location = System::Drawing::Point(24, 386);
+			this->label10->Location = System::Drawing::Point(24, 394);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(159, 27);
 			this->label10->TabIndex = 78;
@@ -191,7 +197,7 @@ namespace HospitalDB {
 				L"101", L"102", L"103", L"104", L"105", L"201", L"202",
 					L"203", L"204", L"205", L"301", L"302", L"303", L"304", L"305"
 			});
-			this->roomNo->Location = System::Drawing::Point(26, 622);
+			this->roomNo->Location = System::Drawing::Point(27, 359);
 			this->roomNo->Name = L"roomNo";
 			this->roomNo->Size = System::Drawing::Size(165, 35);
 			this->roomNo->TabIndex = 77;
@@ -205,7 +211,7 @@ namespace HospitalDB {
 				L"Treatment A", L"Treatment B", L"Treatment C",
 					L"Treatment D", L"Treatment E"
 			});
-			this->treatment->Location = System::Drawing::Point(26, 548);
+			this->treatment->Location = System::Drawing::Point(27, 296);
 			this->treatment->Name = L"treatment";
 			this->treatment->Size = System::Drawing::Size(165, 35);
 			this->treatment->TabIndex = 76;
@@ -214,7 +220,7 @@ namespace HospitalDB {
 			// 
 			this->disease->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->disease->Location = System::Drawing::Point(26, 479);
+			this->disease->Location = System::Drawing::Point(27, 238);
 			this->disease->Name = L"disease";
 			this->disease->Size = System::Drawing::Size(165, 32);
 			this->disease->TabIndex = 75;
@@ -225,7 +231,7 @@ namespace HospitalDB {
 			this->label4->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label4->ForeColor = System::Drawing::Color::Transparent;
-			this->label4->Location = System::Drawing::Point(21, 596);
+			this->label4->Location = System::Drawing::Point(22, 333);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(162, 27);
 			this->label4->TabIndex = 74;
@@ -237,7 +243,7 @@ namespace HospitalDB {
 			this->label7->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label7->ForeColor = System::Drawing::Color::Transparent;
-			this->label7->Location = System::Drawing::Point(21, 454);
+			this->label7->Location = System::Drawing::Point(22, 213);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(90, 27);
 			this->label7->TabIndex = 73;
@@ -249,55 +255,11 @@ namespace HospitalDB {
 			this->label8->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label8->ForeColor = System::Drawing::Color::Transparent;
-			this->label8->Location = System::Drawing::Point(21, 522);
+			this->label8->Location = System::Drawing::Point(22, 270);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(118, 27);
 			this->label8->TabIndex = 72;
 			this->label8->Text = L"Treatment";
-			// 
-			// billgender
-			// 
-			this->billgender->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->billgender->FormattingEnabled = true;
-			this->billgender->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Male", L"Female", L"Other" });
-			this->billgender->Location = System::Drawing::Point(26, 342);
-			this->billgender->Name = L"billgender";
-			this->billgender->Size = System::Drawing::Size(165, 35);
-			this->billgender->TabIndex = 71;
-			// 
-			// label6
-			// 
-			this->label6->AutoSize = true;
-			this->label6->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label6->ForeColor = System::Drawing::Color::Transparent;
-			this->label6->Location = System::Drawing::Point(24, 312);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(87, 27);
-			this->label6->TabIndex = 70;
-			this->label6->Text = L"Gender";
-			// 
-			// billPhoneNum
-			// 
-			this->billPhoneNum->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->billPhoneNum->Location = System::Drawing::Point(26, 277);
-			this->billPhoneNum->Name = L"billPhoneNum";
-			this->billPhoneNum->Size = System::Drawing::Size(165, 32);
-			this->billPhoneNum->TabIndex = 69;
-			// 
-			// label9
-			// 
-			this->label9->AutoSize = true;
-			this->label9->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label9->ForeColor = System::Drawing::Color::Transparent;
-			this->label9->Location = System::Drawing::Point(21, 252);
-			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(168, 27);
-			this->label9->TabIndex = 68;
-			this->label9->Text = L"Phone Number";
 			// 
 			// search
 			// 
@@ -325,13 +287,72 @@ namespace HospitalDB {
 			this->billTable->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->billTable->BackgroundColor = System::Drawing::SystemColors::ActiveCaption;
 			this->billTable->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->billTable->Location = System::Drawing::Point(286, 56);
+			this->billTable->Location = System::Drawing::Point(286, 58);
 			this->billTable->Name = L"billTable";
 			this->billTable->RowHeadersWidth = 51;
 			this->billTable->RowTemplate->Height = 24;
-			this->billTable->Size = System::Drawing::Size(964, 605);
+			this->billTable->Size = System::Drawing::Size(964, 464);
 			this->billTable->TabIndex = 82;
 			this->billTable->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Bill::billTable_CellClick);
+			// 
+			// discharge
+			// 
+			this->discharge->CalendarFont = (gcnew System::Drawing::Font(L"Montserrat", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->discharge->CustomFormat = L"yyyy-MM-dd";
+			this->discharge->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->discharge->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
+			this->discharge->Location = System::Drawing::Point(26, 490);
+			this->discharge->Name = L"discharge";
+			this->discharge->Size = System::Drawing::Size(166, 32);
+			this->discharge->TabIndex = 84;
+			this->discharge->TabStop = false;
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label3->ForeColor = System::Drawing::Color::Transparent;
+			this->label3->Location = System::Drawing::Point(21, 461);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(166, 27);
+			this->label3->TabIndex = 83;
+			this->label3->Text = L"Discharge date";
+			// 
+			// label9
+			// 
+			this->label9->AutoSize = true;
+			this->label9->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label9->ForeColor = System::Drawing::Color::Transparent;
+			this->label9->Location = System::Drawing::Point(25, 586);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(118, 27);
+			this->label9->TabIndex = 85;
+			this->label9->Text = L"Total bill is:";
+			// 
+			// totBill
+			// 
+			this->totBill->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->totBill->Location = System::Drawing::Point(27, 616);
+			this->totBill->Name = L"totBill";
+			this->totBill->Size = System::Drawing::Size(166, 32);
+			this->totBill->TabIndex = 86;
+			// 
+			// button1
+			// 
+			this->button1->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->Location = System::Drawing::Point(27, 539);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(166, 36);
+			this->button1->TabIndex = 87;
+			this->button1->Text = L"Calculate bill";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &Bill::button1_Click);
 			// 
 			// Bill
 			// 
@@ -339,6 +360,11 @@ namespace HospitalDB {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
 				static_cast<System::Int32>(static_cast<System::Byte>(113)));
 			this->ClientSize = System::Drawing::Size(1262, 673);
+			this->Controls->Add(this->button1);
+			this->Controls->Add(this->totBill);
+			this->Controls->Add(this->label9);
+			this->Controls->Add(this->discharge);
+			this->Controls->Add(this->label3);
 			this->Controls->Add(this->billTable);
 			this->Controls->Add(this->billId);
 			this->Controls->Add(this->search);
@@ -350,15 +376,12 @@ namespace HospitalDB {
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->label8);
-			this->Controls->Add(this->billgender);
-			this->Controls->Add(this->label6);
-			this->Controls->Add(this->billPhoneNum);
-			this->Controls->Add(this->label9);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->billName);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->HelpButton = true;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MaximizeBox = false;
 			this->Name = L"Bill";
@@ -396,7 +419,9 @@ namespace HospitalDB {
 	private: System::Void search_Click(System::Object^ sender, System::EventArgs^ e) {
 		try {
 			DataView^ dv = sqldt->DefaultView;
-			dv->RowFilter = String::Format("patientID like '%{0}%'", billId);
+			//dv->RowFilter = String::Format("patientID like '%{1}%'", billName->Text->Trim());
+			//dv->RowFilter = "patientID like '%" + billId->Text->Trim() + "%'";
+			dv->RowFilter = String::Format("CONVERT({0}, System::String) like '%{1}%'", billTable->Text->Trim(), billId->Text->Trim());
 			billTable->DataSource = dv->ToTable();
 		}
 		catch (Exception^ e)
@@ -408,17 +433,49 @@ namespace HospitalDB {
 		try {
 			billId->Text = billTable->SelectedRows[0]->Cells[0]->Value->ToString();
 			billName->Text = billTable->SelectedRows[0]->Cells[1]->Value->ToString();
-			billPhoneNum->Text = billTable->SelectedRows[0]->Cells[2]->Value->ToString();
-			billgender->Text = billTable->SelectedRows[0]->Cells[3]->Value->ToString();
 			disease->Text = billTable->SelectedRows[0]->Cells[4]->Value->ToString();
 			treatment->Text = billTable->SelectedRows[0]->Cells[5]->Value->ToString();
 			roomNo->Text = billTable->SelectedRows[0]->Cells[6]->Value->ToString();
-			//dID->Text = patientTable->SelectedRows[0]->Cells[7]->Value->ToString();
+			admitted->Text = billTable->SelectedRows[0]->Cells[8]->Value->ToString();
 		}
 		catch (Exception^ e)
 		{
 			MessageBox::Show(e->Message, "Connection Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		}
 	}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	float totalbill, treatmentAmount;
+	if (treatment->Text == "Treatment A")
+		treatmentAmount = 100;
+	else if (treatment->Text == "Treatment B")
+		treatmentAmount = 200;
+	else if (treatment->Text == "Treatment C")
+		treatmentAmount = 500;
+	else if (treatment->Text == "Treatment D")
+		treatmentAmount = 1000;
+	else if (treatment->Text == "Treatment E")
+		treatmentAmount = 2000;
+
+	try {
+		sqlconn->ConnectionString = "datasource = localhost;"
+			"port = 3306; "
+			"username = root;"
+			"password = 7240paio6921;"
+			"database = hospitaldb";
+		sqlconn->Open();
+		sqlcmd->CommandText = "select datediff('"+discharge->Text+"', '"+admitted->Text+"') as datediff; ";
+		sqlrd = sqlcmd->ExecuteReader();
+		sqlrd->Read();
+		System::String^ datediff = sqlrd->GetValue(0)->ToString();
+		int datediff_int = Convert::ToInt32(datediff);
+		totalbill = treatmentAmount + datediff_int * 100;
+		totBill->Text = "Rs. "+ totalbill.ToString()+ "";
+	}
+	catch (Exception^ e)
+	{
+		MessageBox::Show(e->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+	}
+	sqlconn->Close();
+}
 };
 }
