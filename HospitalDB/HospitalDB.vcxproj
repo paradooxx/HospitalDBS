@@ -127,6 +127,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="jointTable.cpp" />
     <ClCompile Include="MainForm.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +135,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="DoctorTable.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="jointTable.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="LoginForm.h">
@@ -163,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DoctorTable.resx">
       <DependentUpon>DoctorTable.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="jointTable.resx">
+      <DependentUpon>jointTable.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>

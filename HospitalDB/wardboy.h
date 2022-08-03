@@ -341,6 +341,7 @@ namespace HospitalDB {
 		{
 			MessageBox::Show(e->Message, "Data Entry Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		}
+		sqlconn->Clone();
 	}
 
 	private: System::Void exit_Click(System::Object^ sender, System::EventArgs^ e) {

@@ -7,6 +7,7 @@
 #include "NurseInfo.h"
 #include "wardboy.h"
 #include "Bill.h"
+#include "jointTable.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -26,14 +27,16 @@ void Main(array<String^>^ args)
 	HospitalDB::NurseInfo NurseInfo;
 	HospitalDB::wardboy wardboy;
 	HospitalDB::Bill bill;
+	HospitalDB::jointTable jt;
 
 	connect.ConnectDB();
 	connect.CreateTable();
 	//DoctorTable.ShowDialog();
 	//PatientInfo.ShowDialog();
-	bill.ShowDialog();
+	//bill.ShowDialog();
 	//MainForm.ShowDialog();
-	//LoginForm.ShowDialog();
+	LoginForm.ShowDialog();
+	//jt.ShowDialog();
 	//RoomInfo.ShowDialog();
 	//wardboy.ShowDialog();
 	//NurseInfo.ShowDialog();
